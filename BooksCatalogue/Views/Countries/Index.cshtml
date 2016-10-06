@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Entity.Country>
+
+<div class="navbar navbar-inverse" style="background-color:#FFFCB5;margin-top:60px;margin-bottom:-50px;border-color:rgba(118, 60, 60, 0.05)">
+    @if (User.Identity.IsAuthenticated == true)
+    {
+    <a  data-toggle="modal" id="btnCreateCountry" data-target="#myModal" title="Back to list" class="btn pd10 tip">New Country</a>
+    }
+</div>
+<div class="container">
+    <!-- Trigger the modal with a button -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                
+                <div class="modal-body">
+                    <div id="modal-content">
+                        cargando.....
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Country")
+            </th>
+            <th>
+                @Html.DisplayName("Tel:Kod")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TelKod)
+                </td>
+                <td>
+                    @if (User.Identity.IsAuthenticated == true)
+                    {
+
+                    <a href="#myModal" class="btnCountryEditor btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i></a>
+                    }
+                    <a href="#myModal" class="btnCountryDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-eye-open"></i></a>
+
+                    @if (User.Identity.IsAuthenticated == true)
+                    {
+                        <a href="#myModal" class="btnCountryDelete btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-remove"></i></a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Categoria/Categoria.js"></script>
+}

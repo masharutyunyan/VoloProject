@@ -1,0 +1,159 @@
+﻿@model IEnumerable<Entity.Book>
+@using Entity;  
+@{ 
+    BooksCatalogueEntities1 db = new BooksCatalogueEntities1();
+ }
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Grid.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<div class="navbar navbar-inverse"   style="background-color:#FFFCB5; margin-top:60px;margin-bottom:-50px;">   
+         <a href="@Url.Action("IndexGrid", "Books")" id="grid" class="btn btn-default btn-sm " style="font-size: 17px; height:38px; margin-bottom:-8px;background-color: #D6BBA0;margin-left:4px">
+        <span class="glyphicon glyphicon-th"></span>Grid
+    </a>
+    @if (User.Identity.IsAuthenticated)
+    {
+    <a style="width: 120px ; height:38px; font-size:18px;color:black; margin-top: -59px;padding-right:9px; margin-bottom:-66px; background-color:#D6BBA0;"data-toggle="modal" id="CreateBook" data-target="#myModal" title="Back to list" class="btn pd10 tip" >New Book</a>
+    }
+</div>
+<div class="container">
+    <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body"> 
+                    <div id="modal-content">
+                        cargando.....
+                    </div>              
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<table class="table" id="myTable">
+    <thead>     
+        <tr>
+            <th>
+                
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+
+            <th>
+                @Html.DisplayName("Pager")
+            </th>
+            <th>
+                @Html.DisplayName("Published")
+            </th>
+            <th>
+                @Html.DisplayName("Author")
+            </th>
+            <th>
+                @Html.DisplayName("Country")
+            </th>
+            <th>
+                @Html.DisplayName("")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @{if (item.CountryID != null)
+                    {
+                        var telkod = Convert.ToInt32(db.Countries.Find(item.CountryID).TelKod);
+                    }
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookName)
+                </td>
+                <td>
+                    @{
+                        var pr = Convert.ToDecimal(item.Price);
+                       var pr1 = pr.ToString("C2");
+
+                        @Html.DisplayFor(modelItem => pr1)
+                    }
+                </td>
+                <td>
+                   @if (item.Description != null)
+                   {
+                       if (item.Description.Length > 15)
+                       {
+                           var str = String.Concat(item.Description.Substring(0, 15), "...");
+                        @Html.DisplayFor(modelItem => str)
+                       }
+                   }
+                   else
+                   {
+                        @Html.DisplayFor(modelItem => item.Description)
+
+                   }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PageCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.CountryName)
+                </td>
+                <td>
+                    @if (@item.PictureName != null)
+                    {
+                        <a href="#myModal" class="btnDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID"><img src="~/Picture/@item.PictureName" width="100" height="150" />
+                        </a>                
+                    }
+                </td>
+                <td>
+                    @if (User.Identity.IsAuthenticated == true)
+                    {
+                        <a href="#myModal" class="btnEditor btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class= "glyphicon glyphicon-pencil"></i></a>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ID, @class= "glyphicon glyphicon - pencil" })*@
+                        @*<a href="@Url.Action("Edit", new { id = @item.ID })">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <span class="sr-only">Edit</span>
+                        </a>*@
+                    }
+                    <a href="#myModal" class="btnDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-eye-open"></i></a>
+                    @if (User.Identity.IsAuthenticated == true)
+                    {
+                        <a href="#myModal" class="btnDelet btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-remove"></i></a>
+
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="~/Scripts/Categoria/Categoria.js"></script>
+}

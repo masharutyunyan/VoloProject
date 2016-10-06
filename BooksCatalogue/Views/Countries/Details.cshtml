@@ -1,0 +1,29 @@
+﻿@model Entity.Country
+
+@{
+    Layout = null;
+}
+
+<div>
+    <h4> Details Country </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Country")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tel:Kod")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelKod)
+        </dd>
+
+    </dl>
+</div>
+

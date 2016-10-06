@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fd5184c6ea2143d88d4ff45676ca5af9" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="BooksCatalogueModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.AspNetRole" Width="1.5" PointX="7.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.AspNetUser" Width="1.5" PointX="10" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.Attribute" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.AttributesType" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.AttributValue" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.Author" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.Book" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.Books_of_Attributes" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.Country" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.UserBook" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BooksCatalogueModel.User" Width="1.5" PointX="9.75" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="BooksCatalogueModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="BooksCatalogueModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="BooksCatalogueModel.FK_Attributes_AttributesType" ManuallyRouted="false" />
+        <AssociationConnector Association="BooksCatalogueModel.FK_AttributValue_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="BooksCatalogueModel.FK_Books_Authors" ManuallyRouted="false" />
+        <AssociationConnector Association="BooksCatalogueModel.FK_Books_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="BooksCatalogueModel.FK_Books_of_Attributes_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="BooksCatalogueModel.FK_UserBooks_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="BooksCatalogueModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="BooksCatalogueModel.FK_Books_of_Attributes_Attributes11" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

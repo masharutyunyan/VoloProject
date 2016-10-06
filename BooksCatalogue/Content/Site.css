@@ -1,0 +1,132 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.hidden{
+    display:none;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+#modal-content .navbar navbar-inverse navbar-fixed-top{
+    display:none;
+    background-color:#3D2B2D;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #a82323;
+    margin-right :40px;
+
+}
+.navbar-inverse .navbar-nav>li>a{
+    padding-bottom:0px;
+    padding-top: 50px;
+}
+#myTable_wrapper {
+  margin-top: 60px !important;
+}
+.DivPictureDetails{
+    display:inline-block;
+
+}
+.PictureDetails{
+    width: 150px; 
+    height:150px; 
+    margin-left:170px; 
+    margin-top:15px;
+
+}
+.TableDetails{
+    display:inline-block;
+}
+.Price{
+    display:inline-block;
+}
+.Picture{
+    display:inline-block;
+}
+.container body-content{
+
+}
+ .btnNav:hover{
+     border-color:white;
+ }
+#btnPanelBooksIndex:hover{
+     border-color:#3D2B2D;
+
+ }
+btnPanelBooksIndex{
+         width: 120px; 
+         height:38px;
+         font-size:20px;
+         color:black; 
+         margin-top: -50px;
+         margin-bottom:-66px; 
+         background-color:#D6BBA0;       
+}
+#btnCreateCountry:hover {
+    border-color: #3D2B2D;
+}       
+#btnCreateCountry{
+         width: 140px; 
+         height:38px;
+         font-size:20px;
+         color:black; 
+         margin-top: -50px;
+         margin-bottom:-66px; 
+         background-color:#D6BBA0;            
+
+}
+#btnCreateAuthor:hover{
+         border-color:#3D2B2D;
+}
+#btnCreateAuthor{
+         width: 120px; 
+         height:38px;
+         font-size:20px;
+         color:black; 
+         margin-top: -50px;
+         margin-bottom:-66px; 
+         background-color:#D6BBA0;
+}
+#grid:hover{
+     border-color:#3D2B2D;
+}
+#Table:hover {
+    border-color: #3D2B2D;
+}
+#gridContent:hover{
+    border-color: #3D2B2D;
+
+} 
+ 
+  
+#CreateBook :hover{
+    border-color: #3D2B2D;
+
+} 
+   
+#CreateBook {
+    height: 38px;
+    font-size: 18px;
+    color: black;
+    margin-bottom: -66px;
+    background-color: #D6BBA0;
+}

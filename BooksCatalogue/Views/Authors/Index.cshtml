@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Entity.Author>
+<div class="navbar navbar-inverse" style="background-color:#FFFCB5;margin-top:60px;margin-bottom:-50px;">
+  @if (User.Identity.IsAuthenticated == true)
+  {
+      <a  data-toggle="modal" id="btnCreateAuthor" data-target="#myModal" title="Back to list" class="btn pd10 tip">New Author</a>
+  }
+</div>
+<div class="container">
+    <!-- Trigger the modal with a button -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                @*<div class="modal-header">
+                        <h1>Books</h1>
+                    </div>*@
+                <div class="modal-body">
+                    <div id="modal-content">
+                        cargando.....
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+@if (User.Identity.IsAuthenticated == true)
+{
+
+    <a href="#myModal" class="btnAuthorEditor btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class= "glyphicon glyphicon-pencil"></i></a> 
+}
+<a href="#myModal" class="btnAuthorDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-eye-open"></i></a>
+
+@if (User.Identity.IsAuthenticated == true)
+{
+    <a href="#myModal" class="btnAuthorDelete btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-remove"></i></a>
+}
+                </td>
+            </tr>
+        }
+    </tbody>
+        
+</table>
+
+
+@section scripts
+{<script type="text/javascript"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Categoria/Categoria.js"></script>
+}
