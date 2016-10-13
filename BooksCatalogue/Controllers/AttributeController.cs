@@ -238,7 +238,7 @@ namespace BooksCatalogue.Controllers
                     return Error(error);
                 }
             }
-          
+            { }
             return RedirectToAction("AttributeAddTextValue");
 
         }
