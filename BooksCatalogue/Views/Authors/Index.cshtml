@@ -1,9 +1,8 @@
 ﻿@model IEnumerable<Entity.Author>
 <div class="navbar navbar-inverse" style="background-color:#FFFCB5;margin-top:60px;margin-bottom:-50px;">
-  @if (User.Identity.IsAuthenticated == true)
-  {
+ 
       <a  data-toggle="modal" id="btnCreateAuthor" data-target="#myModal" title="Back to list" class="btn pd10 tip">New Author</a>
-  }
+  
 </div>
 <div class="container">
     <!-- Trigger the modal with a button -->
@@ -58,17 +57,14 @@
                     @Html.DisplayFor(modelItem => item.Rating)
                 </td>
                 <td>
-@if (User.Identity.IsAuthenticated == true)
-{
+
 
     <a href="#myModal" class="btnAuthorEditor btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class= "glyphicon glyphicon-pencil"></i></a> 
-}
+
 <a href="#myModal" class="btnAuthorDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-eye-open"></i></a>
 
-@if (User.Identity.IsAuthenticated == true)
-{
     <a href="#myModal" class="btnAuthorDelete btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-remove"></i></a>
-}
+
                 </td>
             </tr>
         }

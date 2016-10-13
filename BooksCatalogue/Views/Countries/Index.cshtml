@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<Entity.Country>
 
 <div class="navbar navbar-inverse" style="background-color:#FFFCB5;margin-top:60px;margin-bottom:-50px;border-color:rgba(118, 60, 60, 0.05)">
-    @if (User.Identity.IsAuthenticated == true)
-    {
+   
     <a  data-toggle="modal" id="btnCreateCountry" data-target="#myModal" title="Back to list" class="btn pd10 tip">New Country</a>
-    }
+    
 </div>
 <div class="container">
     <!-- Trigger the modal with a button -->
@@ -53,17 +52,14 @@
                     @Html.DisplayFor(modelItem => item.TelKod)
                 </td>
                 <td>
-                    @if (User.Identity.IsAuthenticated == true)
-                    {
+                  
 
                     <a href="#myModal" class="btnCountryEditor btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i></a>
-                    }
+                    
                     <a href="#myModal" class="btnCountryDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-eye-open"></i></a>
 
-                    @if (User.Identity.IsAuthenticated == true)
-                    {
                         <a href="#myModal" class="btnCountryDelete btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-remove"></i></a>
-                    }
+                    
                 </td>
             </tr>
         }
