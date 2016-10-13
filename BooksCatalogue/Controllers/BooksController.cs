@@ -16,8 +16,6 @@ namespace BooksCatalogue.Controllers
     public class BooksController : Controller
     {
         private static string FilePath = "~/Picture/";
-        //  Helper.Helper help = new Helper.Helper();
-        private static IQueryable<Book> tempSearchBooks;
         private static IQueryable<Book> tempSortBooks;
         private static string NameAction;
         private BooksCatalogueEntities1 db = new BooksCatalogueEntities1();
@@ -27,7 +25,6 @@ namespace BooksCatalogue.Controllers
         {
             Book book = new Book();
              var books = db.Books.Include(b => b.Author).Include(b => b.Country);
-            //System.Collections.Generic.List <Book> temp = new List<Book>();
             
             foreach (var item in books)
             {
@@ -35,7 +32,6 @@ namespace BooksCatalogue.Controllers
             }
             NameAction = "Index";
               return View(await books.ToListAsync());
-           // return View(Meneger.Meneger.GetBoooks());
 
         }
 
@@ -57,7 +53,6 @@ namespace BooksCatalogue.Controllers
             if (!String.IsNullOrEmpty(search))
                 {
                     var searchBooks = Helper.Helper.Search(search, books);
-                    tempSearchBooks = searchBooks;
                     searchBooks = PriceByCountryTelKod(searchBooks);
                     searchBooks = searchBooks.OrderBy(k => k.BookName).Skip((page - 1) * 4).Take(4);
                     ViewBag.Page = page;
@@ -82,16 +77,7 @@ namespace BooksCatalogue.Controllers
                 ViewBag.PageSize = 4;
                 return View(await sortBooks.ToListAsync());
             }
-            if (!String.IsNullOrEmpty(sortby) && tempSearchBooks.Count()>0)
-            {
-                var sortBooks = Helper.Helper.Sort(sortby, tempSearchBooks);
-                sortBooks = PriceByCountryTelKod(books);
-                sortBooks = sortBooks.OrderBy(k => k.BookName).Skip((page - 1) * 4).Take(4);
-                ViewBag.Page = page;
-                ViewBag.Count = sortBooks.Count();
-                ViewBag.PageSize = 4;
-                return View(await sortBooks.ToListAsync());
-            }
+           
             PriceByCountryTelKod(books);
            books = books.OrderBy(k=>k.BookName).Skip((page - 1) * 4).Take(4);
             ViewBag.Page = page;
@@ -118,14 +104,15 @@ namespace BooksCatalogue.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
+            Book book = new Book();
             ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FirstName");
-            ViewBag.CountryID = new SelectList(db.Countries, "ID", "CountryName");
+            ViewBag.CountryID = new SelectList(db.Countries, "ID", "CountryName");           
             return View();
         }
 
         [HttpPost]
        // [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,BookName,Price,Description,PictureName,PageCount,PublishDate,CountryID,AuthorID")] Book book, HttpPostedFileBase PictureName)
+        public async Task<ActionResult> Create([Bind(Include = "ID,BookName,Price,Description,PictureName,PageCount,PublishDate,CountryID,AuthorID,Books_of_Attributes")] Book book, HttpPostedFileBase PictureName)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +120,6 @@ namespace BooksCatalogue.Controllers
                 {
 
                     book.PictureName = SavePicture(PictureName);
-                    //book.PictureName = help.SavePicture(PictureName);
                 }
                     db.Books.Add(book);
 
@@ -166,8 +152,6 @@ namespace BooksCatalogue.Controllers
         }
 
         // POST: Books/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
        // [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ID,BookName,Price,Description,PictureName,PageCount,PublishDate,CountryID,AuthorID")] Book book, HttpPostedFileBase PictureName)
@@ -177,10 +161,9 @@ namespace BooksCatalogue.Controllers
             {
                 if (PictureName != null)
                     {
-                    // help.DeletePhoto(book.PictureName);
                     DeletePhoto(book.PictureName);
                     book.PictureName = SavePicture(PictureName);
-                    }
+                       }
 
                 else
                     {
@@ -222,7 +205,6 @@ namespace BooksCatalogue.Controllers
             if (book.PictureName != null)
             {
                 DeletePhoto(book.PictureName);
-               // help.DeletePhoto(book.PictureName);
             }
             db.Books.Remove(book);
             await db.SaveChangesAsync();

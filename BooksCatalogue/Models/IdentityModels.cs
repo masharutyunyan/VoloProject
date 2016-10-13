@@ -31,5 +31,7 @@ namespace BooksCatalogue.Models
         }
 
         public System.Data.Entity.DbSet<BooksCatalogue.Models.MyAttribute> MyAttributes { get; set; }
+
+        public System.Data.Entity.DbSet<Entity.Attribute> AttributValues { get; set; }
     }
 }

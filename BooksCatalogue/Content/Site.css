@@ -62,9 +62,7 @@ textarea {
 .Picture{
     display:inline-block;
 }
-.container body-content{
 
-}
  .btnNav:hover{
      border-color:white;
  }
@@ -129,4 +127,8 @@ btnPanelBooksIndex{
     color: black;
     margin-bottom: -66px;
     background-color: #D6BBA0;
+}
+#Publishd{
+    display:inline-block;
+    margin-top:5px
 }

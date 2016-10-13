@@ -1,0 +1,71 @@
+﻿
+
+@model IEnumerable<BooksCatalogue.Models.AttributeXMLTextValueModel>
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<table class="table" id="myTable" style="display:inline-block; width:100px;margin-left: 191px;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Value")
+            </th>
+            <th>
+                @Html.DisplayName("Max")
+            </th>
+            <th>
+                @Html.DisplayName("Min")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxCharactersCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.minCharactersCount)
+                </td>
+                <td>
+                    <a href="@Url.Action("EditAttributeValue", "Attribute",new { id =item.ID})" id="EditAttributValue" class="btn btn-default btn-sm" >
+                        <span class="glyphicon glyphicon-pencil">
+                        </span>
+                    </a>                
+                </td>
+                <td>
+                    <a href="@Url.Action("DeleteAttributeValue", "Attribute",new { id =item.ID})" id="DeleteAttributValue" class="btn btn-default btn-sm" style="background-color:#D6BBA0;">
+                        <span class="glyphicon glyphicon-remove">
+                        </span>
+                    </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+@section scripts
+{
+    <script type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Categoria/Categoria.js"></script>
+}
+
+
+
+
+
+

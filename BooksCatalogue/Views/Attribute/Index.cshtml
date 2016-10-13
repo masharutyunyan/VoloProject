@@ -18,8 +18,6 @@
             <th>
                 @Html.DisplayName("Type")
             </th>
-            
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -34,17 +32,12 @@
                 </td>
                
                 <td>
-                    @if (User.Identity.IsAuthenticated == true)
-                    {
-
-                        <a href="#myModal" class="btnAuthorEditor btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i></a>
-                    }
-                    <a href="#myModal" class="btnAuthorDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-eye-open"></i></a>
-
-                    @if (User.Identity.IsAuthenticated == true)
-                    {
-                        <a href="#myModal" class="btnAuthorDelete btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-remove"></i></a>
-                    }
+                 
+                    <a href="@Url.Action("Edit", "Attribute",new { id = item.ID })" id="Table" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a href="@Url.Action("Delete", "Attribute", new { id = item.ID })"id="Table" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-remove"></i></a>
+                     <a href="@Url.Action("AddAttributeValue", "Attribute",new { id = item.ID })" id="Table" class="btn btn-default btn-sm" style="background-color:#D6BBA0;"> <span class="glyphicon glyphicon-plus-sign">
+</span>Value </a>
+                  
                 </td>
             </tr>
         }

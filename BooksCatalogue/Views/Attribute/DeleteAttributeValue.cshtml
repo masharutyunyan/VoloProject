@@ -1,0 +1,47 @@
+﻿@model BooksCatalogue.Models.AttributeXMLTextValueModel
+
+@{
+    ViewBag.Title = "DeleteAttributeValue";
+}
+
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Value")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+        <dt>
+            @Html.DisplayName("Max")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxCharactersCount)
+        </dd>
+        <dt>
+            @Html.DisplayName("Min")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.minCharactersCount)
+        </dd>
+
+        <dt>
+</dl>
+
+@using (Html.BeginForm("DeleteAttributeValue", "Attribute", FormMethod.Post, new { enctype = "multipart/form-data" }))
+       
+    {
+     @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default"/> 
+            @Html.ActionLink("Back to List",  "AttributeAddTextValue")
+        </div>
+    }
+</div>

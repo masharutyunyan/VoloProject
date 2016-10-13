@@ -551,20 +551,19 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttributeController.cs" />
-    <Compile Include="Controllers\AttributesTypesController.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\Tesk.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Helper\Pageination.cs" />
+    <Compile Include="Models\AttributeXMLTextValueModel.cs" />
+    <Compile Include="Models\AttributeAddValueView.cs" />
     <Compile Include="Models\MyAttribute.cs" />
-    <Compile Include="MyHelper\MyHelper.cs" />
     <Compile Include="Meneger\Meneger.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CodeSnippetHelper.cs" />
@@ -944,6 +943,12 @@
     <Content Include="Views\Books\ErrorView.cshtml" />
     <Content Include="Views\Books\IndexGrid.cshtml" />
     <Content Include="Views\Attribute\Create.cshtml" />
+    <Content Include="Views\Attribute\Edit.cshtml" />
+    <Content Include="Views\Attribute\Delete.cshtml" />
+    <Content Include="Views\Attribute\_AttributeAddTextValue.cshtml" />
+    <Content Include="Views\Attribute\AttributeAddTextValue.cshtml" />
+    <Content Include="Views\Attribute\DeleteAttributeValue.cshtml" />
+    <Content Include="Views\Attribute\EditAttributeValue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookCataloue\Entity\Entity.csproj">

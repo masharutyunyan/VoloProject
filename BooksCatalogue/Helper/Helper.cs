@@ -8,39 +8,19 @@ using System.Web.Mvc;
 using Entity;
 using System.IO;
 using Microsoft.AspNetCore.Hosting.Server;
+using BooksCatalogue.Models;
 
 namespace BooksCatalogue.Helper
 {
-    public static class Helper 
+    public static class Helper
     {
-        private static string FilePath = "~/Picture/";
-        public static string SavePicture(HttpPostedFileBase PictureName)
-        {
-            FileInfo file = new FileInfo(PictureName.FileName);
-            string GuIdName = Guid.NewGuid().ToString() + file.Extension;// stugel vor miayn picture tipi filer pahi 
-         //   var path = Path.Combine(HttpContext.Server.MapPath(FilePath), GuIdName);
-           // PictureName.SaveAs(path);
-            return GuIdName;
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public  static void DeletePhoto(string photoFileName)
-        {
-          //  string fullPath = Request.MapPath(FilePath + photoFileName);
-           // if (System.IO.File.Exists(fullPath))
-            {
-            //    System.IO.File.Delete(fullPath);
-
-            }
-
-        }
-        public static IQueryable<Book> Search(string searchText,IQueryable<Book> books)
+        public static IQueryable<Book> Search(string searchText, IQueryable<Book> books)
         {
 
             var b = books.Where(s => s.BookName.Contains(searchText) || s.Price.ToString().Contains(searchText) || s.Author.FirstName.Contains(searchText));
-            return b;        
+            return b;
         }
+    
     public static IQueryable<Book> Sort(string sortby, IQueryable<Book> sortBooks)
     {
             if (sortby == "title")
@@ -52,5 +32,23 @@ namespace BooksCatalogue.Helper
                 sortBooks = sortBooks.OrderBy(x => x.Author.FirstName);
             return sortBooks;
         }
+       public static AttributeXMLTextValueModel XmlDeSerialization (string str)
+        {
+            int  indexfirst = str.IndexOf("<Value>") +7;
+            int  indexlast = str.IndexOf("</Value>") - indexfirst;
+            int  c =  str.Count();
+            string s = str.Substring(indexfirst , indexlast);
+            AttributeXMLTextValueModel XmlValue = new AttributeXMLTextValueModel();
+            XmlValue.Value = s;
+            indexfirst = str.IndexOf("<MaxCharactersCount>") + 20;
+            indexlast = str.IndexOf("</MaxCharactersCount>") - indexfirst;
+            XmlValue.MaxCharactersCount = Convert.ToInt32( str.Substring(indexfirst,indexlast));
+            indexfirst = str.IndexOf("<minCharactersCount>") + 20;
+            indexlast = str.IndexOf("</minCharactersCount>") - indexfirst;
+            XmlValue.minCharactersCount = Convert.ToInt32(str.Substring(indexfirst,indexlast));
+
+            return XmlValue; 
+        }
+
     }
 }
