@@ -7,8 +7,7 @@
     int current = ViewBag.Page;
     int size = ViewBag.PageSize;
     int total = ViewBag.Count;
-    //string sort = ViewBag.sort;
-    //string search = ViewBag.search;
+   
     ViewBag.Title = "IndexGrid";
     string serchTemp = ViewBag.searchBooks;
 }
@@ -37,17 +36,18 @@
 <div class="container">
     <div class="well well-sm" style="margin-top:100px;margin-left:21px;background-color:#FFFCB5;margin-right: 50px;">
     @using (Html.BeginForm("IndexGrid", "books", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken();
+    { 
+         @Html.AntiForgeryToken();
+       
+         
         <div class="btn-group">
-    <a href="@Url.Action("Index", "Books")" id="Table" class="btn btn-default btn-sm" style="background-color:#D6BBA0;display:inline-block; font-size: 17px; height:38px">
-        <span class="glyphicon glyphicon-th-list">
-        </span>Table
-    </a>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a  data-toggle="modal" id="CreateBook" data-target="#myModal" title="Back to list" class="btn pd10 tip">New Book</a>
-            }
+           
+            <a href="@Url.Action("Index", "Books")" id="grid" class="btn btn-default btn-sm " style="font-size: 17px; height:38px; margin-bottom:-8px;background-color: #D6BBA0;margin-left:4px">
+                <span class="glyphicon glyphicon-th-list"></span>Grid
+            </a>
+          
+                <a  data-toggle="modal" id="CreateBook" data-target="#myModal" title="Back to list" class="btn pd10 tip"> <span class="glyphicon glyphicon-plus-sign"></span> Book</a>
+           
        
         </div>
                 <div style="display:inline-block; float:right;padding-left:-2px;">

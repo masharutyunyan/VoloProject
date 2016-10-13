@@ -40,13 +40,6 @@ namespace BooksCatalogue.Helper
             string s = str.Substring(indexfirst , indexlast);
             AttributeXMLTextValueModel XmlValue = new AttributeXMLTextValueModel();
             XmlValue.Value = s;
-            indexfirst = str.IndexOf("<MaxCharactersCount>") + 20;
-            indexlast = str.IndexOf("</MaxCharactersCount>") - indexfirst;
-            XmlValue.MaxCharactersCount = Convert.ToInt32( str.Substring(indexfirst,indexlast));
-            indexfirst = str.IndexOf("<minCharactersCount>") + 20;
-            indexlast = str.IndexOf("</minCharactersCount>") - indexfirst;
-            XmlValue.minCharactersCount = Convert.ToInt32(str.Substring(indexfirst,indexlast));
-
             return XmlValue; 
         }
 

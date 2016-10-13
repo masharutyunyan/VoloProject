@@ -3,7 +3,9 @@
 @{
     Layout = null;
 }
-
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
 @*<div id="gridContent" style="width:600px; height:400px; background-color:#FFFCB5; margin-left:37px; float:left ;margin-top:10px;">*@
 
     <div class="row">
@@ -11,7 +13,7 @@
 
           
                 <img class="btnImg" style="margin-top: 24px ! important;margin:15px;" src="~/Picture/@Model.PictureName" width="100" height="150" />
-            </a>
+         
             <div class="price" style="background-color:chartreuse; width:80px;font-size:20px;margin-left:23px;">
                 @{
                     var pr = Convert.ToDecimal(@Model.Price);
@@ -23,7 +25,7 @@
         </div>
         <div class="col-lg-9 my-class">
 
-            <h3> <font style="font-style:oblique">@Model.BookName</font></h3>
+            <h3 > <font style="font-style:oblique">@Model.BookName</font></h3>
             <div>
                 <h4>Desckription</h4>
                 @if (Model.Description != null)
@@ -47,15 +49,15 @@
         </div>
     </div>
     <div>
-        <h4 style="display:inline-block;margin-left:151px;">Author:</h4>
+        <h4 class="authorh4">Author:</h4>
         @Model.Author.FirstName
-        <h4 style="display:inline-block;margin-left:26px;">Pager:</h4>
+        <h4  class= "Pagerh4">Pager:</h4>
         @Model.PageCount
     </div>
     <div>
-        <h4 style="display:inline-block;margin-left:151px;">Country:</h4>
+        <h4 class="countryh4" ">Country:</h4>
         @Model.Country.CountryName
-        <h4 style="display:inline-block;margin-left:34px;">Published:</h4>
+        <h4 class="publishdh4" ">Published:</h4>
         @Model.PublishDate
     </div>
     <div class="row" style="float:right;margin-right:15px;">

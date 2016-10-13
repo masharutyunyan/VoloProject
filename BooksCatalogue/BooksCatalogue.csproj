@@ -563,6 +563,7 @@
     <Compile Include="Helper\Pageination.cs" />
     <Compile Include="Models\AttributeXMLTextValueModel.cs" />
     <Compile Include="Models\AttributeAddValueView.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\MyAttribute.cs" />
     <Compile Include="Meneger\Meneger.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -935,11 +936,6 @@
     <Content Include="Views\Books\Index.cshtml" />
     <Content Include="Views\GroupingGridController.cshtml" />
     <Content Include="Views\Attribute\Index.cshtml" />
-    <Content Include="Views\AttributesTypes\Create.cshtml" />
-    <Content Include="Views\AttributesTypes\Delete.cshtml" />
-    <Content Include="Views\AttributesTypes\Details.cshtml" />
-    <Content Include="Views\AttributesTypes\Edit.cshtml" />
-    <Content Include="Views\AttributesTypes\Index.cshtml" />
     <Content Include="Views\Books\ErrorView.cshtml" />
     <Content Include="Views\Books\IndexGrid.cshtml" />
     <Content Include="Views\Attribute\Create.cshtml" />
@@ -949,6 +945,7 @@
     <Content Include="Views\Attribute\AttributeAddTextValue.cshtml" />
     <Content Include="Views\Attribute\DeleteAttributeValue.cshtml" />
     <Content Include="Views\Attribute\EditAttributeValue.cshtml" />
+    <Content Include="Views\Attribute\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookCataloue\Entity\Entity.csproj">

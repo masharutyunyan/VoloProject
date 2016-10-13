@@ -1,0 +1,11 @@
+﻿@model BooksCatalogue.Models.Error
+@{
+    ViewBag.Title = "Error";
+}
+
+<h2>Error</h2>
+<p> @Model.Messag</p>
+<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn btn-default" />
+    @Html.ActionLink("Back to List", "Index")
+</div>

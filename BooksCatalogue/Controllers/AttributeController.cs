@@ -85,32 +85,37 @@ namespace BooksCatalogue.Controllers
         }
 
         [HttpPost]//post popoxum e atributi arjeq@
-        public ActionResult EditAttributeValue(string value, int maxCharactersCount, int minCharactersCount, int id)
+        public ActionResult EditAttributeValue(string value, int id)
         {
-            if (value != null || !maxCharactersCount.Equals(null) || !minCharactersCount.Equals(null))
+            if (value != null)
             {
                 AttributValue attributeValue = new AttributValue();
                 attributeValue = context.AttributValues.Find(id);
                 AttributeXMLTextValueModel atrValue = new AttributeXMLTextValueModel();// texapoxel helper
-                atrValue= Helper.Helper.XmlDeSerialization(attributeValue.AttributValue1);
+                atrValue = Helper.Helper.XmlDeSerialization(attributeValue.AttributValue1);
                 atrValue.Value = value;
-                atrValue.MaxCharactersCount = maxCharactersCount;
-                atrValue.minCharactersCount = minCharactersCount;
                 System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(atrValue.GetType());
                 StringWriter stringWriter = new StringWriter();
                 atrXml.Serialize(stringWriter, atrValue);
                 attributeValue.AttributValue1 = stringWriter.ToString();
                 MyAttribute attrTemp = Meneger.Meneger.Find(attribute.ID);
                 attribute = attrTemp;
+
                 if (ModelState.IsValid)
                 {
                     context.SaveChanges();
                 }
-            }  
+            }
+            else
+            {
+                Error error = new Error();
+                error.Messag = "do not enter an attribute value";
+                return Error(error);
+            }
+              
                 return RedirectToAction("AttributeAddTextValue");
             
         }
-      
 
         // GET: Delete/1 Attribute value 
         public ActionResult DeleteAttributeValue(int? id)
@@ -141,7 +146,9 @@ namespace BooksCatalogue.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                Error error = new Error();
+                error.Messag = "Bad request";
+                return Error(error);
             }
             MyAttribute attribute = Meneger.Meneger.Find(id);
 
@@ -153,7 +160,7 @@ namespace BooksCatalogue.Controllers
         }
 
         // POST: 
-       
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
@@ -181,10 +188,7 @@ namespace BooksCatalogue.Controllers
         {   
             return View(attribute);
         }
-        public ActionResult AttributeAddDateValue(MyAttribute atr)
-        {
-            return View(atr);
-        }
+     
         // GET: Add Attribute Value
         public ActionResult AddAttributeValue(int? id) //cucadrum e hamapatasxan tipi atributi arjeqi avelacman ej@
         {
@@ -202,28 +206,22 @@ namespace BooksCatalogue.Controllers
             ViewBag.AttributeType = context.AttributesTypes.Find(attribute.TypeID).AttributeType;
             if (ViewBag.AttributeType == "text")
                 return RedirectToAction("AttributeAddTextValue");
-            if (ViewBag.AttributeType == "Date")
-               AttributeAddDateValue(attribute);
             return View(atr);
         }
 
         [HttpPost]
          [ValidateAntiForgeryToken]
-        public  ActionResult AddAttributeValue(string value, int maxCharactersCount, int minCharactersCount)
+        public  ActionResult AddAttributeValue(string value)
         {
-            if (value != null || !maxCharactersCount.Equals(null) || !minCharactersCount.Equals(null))
+            if (value != null)
             {
                 AttributeXMLTextValueModel atrValue = new AttributeXMLTextValueModel();// texapoxel helper
                 atrValue.Value = value;
-                atrValue.MaxCharactersCount = maxCharactersCount;
-                atrValue.minCharactersCount = minCharactersCount;
+                
                 System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(atrValue.GetType());
                 StringWriter stringWriter = new StringWriter();
                 atrXml.Serialize(stringWriter, atrValue);
                AttributValue  dbAtrValue = new AttributValue();
-                //TextWriter writer = new StreamWriter(@"E:\myfile.txt");
-                //atrXml.Serialize(writer, atrValue);
-                //writer.Close();
                 dbAtrValue.AttributID = attribute.ID;
                 dbAtrValue.AttributValue1 = stringWriter.ToString();
                 MyAttribute attrTemp = Meneger.Meneger.Find(attribute.ID);
@@ -233,10 +231,21 @@ namespace BooksCatalogue.Controllers
                     context.AttributValues.Add(dbAtrValue);
                     context.SaveChanges();
                 }
+                else
+                {
+                    Error error = new Error();
+                    error.Messag = "do not enter an attribute value";
+                    return Error(error);
+                }
             }
           
             return RedirectToAction("AttributeAddTextValue");
 
+        }
+        private ActionResult Error(Error error)
+        {
+            
+            return View(error);
         }
         protected override void Dispose(bool disposing)
         {

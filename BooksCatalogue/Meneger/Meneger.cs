@@ -11,9 +11,7 @@ namespace BooksCatalogue.Meneger
 {
     public class Meneger
     {
-     
-      
-        public Meneger()
+       public Meneger()
         {
         }
         public static  List<ViewBookModel> GetBoooks()
@@ -48,17 +46,6 @@ namespace BooksCatalogue.Meneger
                     attribute.AttributName = item.AttributName;
                     attribute.AttributValues = item.AttributValues;
                     attribute.TypeID = item.TypeID;
-
-                    //foreach (var itemAttrValue in context.AttributValues)
-                    //{
-                    //    if (itemAttrValue.AttributID != null)
-                    //    {
-                    //        AttributValue attrValue = new AttributValue();
-                    //        if (itemAttrValue.AttributID == item.ID)
-                    //            attrValue = itemAttrValue;
-                    //            attribute.AttributValues.Add(attrValue);
-                    //    }
-                    //}
                     attributeList.Add(attribute);   
 
                 }
@@ -70,7 +57,6 @@ namespace BooksCatalogue.Meneger
             using (BooksCatalogueEntities1 Db = new BooksCatalogueEntities1())
             {
                 Entity.Attribute atrDb = new Entity.Attribute();
-                 //atrDb = Db.Attributes.Find(attribute.ID);
                 atrDb.AttributesType = attribute.AttributesType;
                 atrDb.AttributName = attribute.AttributName;
                 atrDb.AttributValues = attribute.AttributValues;

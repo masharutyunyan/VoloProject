@@ -4,12 +4,18 @@
 @{
     ViewBag.Title = "Index";
 }
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<h2>Index</h2>
+</head>
+<div class="navbar navbar-inverse"   style="background-color:#FFFCB5; margin-top:60px;margin-bottom:-50px;">
+<a href="@Url.Action("Create", "Attribute")" id="grid" class="btn btn-default btn-sm " style="font-size: 17px; height:38px; margin-bottom:-8px;background-color: #D6BBA0;margin-left:4px">
+    <span class="glyphicon glyphicon-plus-sign"></span>Attribute
+</a>
+</div>
 
 
-
-<table class="table" id="myTable">
+<table class="table" id="myTable" >
     <thead>
         <tr>
             <th>
@@ -49,7 +55,6 @@
 @section scripts
 {
     <script type="text/javascript"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="~/Scripts/Categoria/Categoria.js"></script>

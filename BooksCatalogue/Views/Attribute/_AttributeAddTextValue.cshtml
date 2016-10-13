@@ -8,18 +8,13 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
-<table class="table" id="myTable" style="display:inline-block; width:100px;margin-left: 191px;">
+<table class="table" id="myTable" style="margin-left: 191px;">
     <thead>
         <tr>
             <th>
                 @Html.DisplayName("Value")
             </th>
-            <th>
-                @Html.DisplayName("Max")
-            </th>
-            <th>
-                @Html.DisplayName("Min")
-            </th>
+           
         </tr>
     </thead>
     <tbody>
@@ -30,12 +25,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Value)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.MaxCharactersCount)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.minCharactersCount)
-                </td>
+                </td>*@
                 <td>
                     <a href="@Url.Action("EditAttributeValue", "Attribute",new { id =item.ID})" id="EditAttributValue" class="btn btn-default btn-sm" >
                         <span class="glyphicon glyphicon-pencil">
@@ -62,6 +57,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="~/Scripts/Categoria/Categoria.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
 }
 
 

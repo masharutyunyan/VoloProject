@@ -12,8 +12,7 @@ namespace BooksCatalogue.Models
     {
         public int ID { get; set; }
         public string Value { get; set; }
-        public int MaxCharactersCount { get; set; }
-        public int minCharactersCount { get; set; }
+      
     public AttributeXMLTextValueModel()
         {
           

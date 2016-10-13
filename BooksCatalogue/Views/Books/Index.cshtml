@@ -8,13 +8,13 @@
     <link href="~/Content/Grid.css" rel="stylesheet" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<div class="navbar navbar-inverse"   style="background-color:#FFFCB5; margin-top:60px;margin-bottom:-50px;">   
+<div class="navbar navbar-inverse mynavbar"   style="background-color:#FFFCB5; margin-top:60px;">   
          <a href="@Url.Action("IndexGrid", "Books")" id="grid" class="btn btn-default btn-sm " style="font-size: 17px; height:38px; margin-bottom:-8px;background-color: #D6BBA0;margin-left:4px">
         <span class="glyphicon glyphicon-th"></span>Grid
     </a>
     @*@if (User.Identity.IsAuthenticated)
     {*@
-    <a style="width: 120px ; height:38px; font-size:18px;color:black; margin-top: -59px;padding-right:9px; margin-bottom:-66px; background-color:#D6BBA0;"data-toggle="modal" id="CreateBook" data-target="#myModal" title="Back to list" class="btn pd10 tip" >New Book</a>
+    <a style="width: 120px ; height:38px; font-size:18px;color:black; margin-top: -59px;padding-right:9px; margin-bottom:-66px; background-color:#D6BBA0;"data-toggle="modal" id="CreateBook" data-target="#myModal" title="Back to list" class="btn pd10 tip" ><span class="glyphicon glyphicon-plus-sign"></span> Book</a>
     
 </div>
 <div class="container">
@@ -131,11 +131,7 @@
                     @*@if (User.Identity.IsAuthenticated == true)
                     {*@
                         <a href="#myModal" class="btnEditor btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class= "glyphicon glyphicon-pencil"></i></a>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ID, @class= "glyphicon glyphicon - pencil" })*@
-                        @*<a href="@Url.Action("Edit", new { id = @item.ID })">
-                            <i class="glyphicon glyphicon-pencil"></i>
-                            <span class="sr-only">Edit</span>
-                        </a>*@
+                  
                     
                     <a href="#myModal" class="btnDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-eye-open"></i></a>
                     @*@if (User.Identity.IsAuthenticated == true)

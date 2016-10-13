@@ -132,3 +132,44 @@ btnPanelBooksIndex{
     display:inline-block;
     margin-top:5px
 }
+
+<!-- Details-->
+
+.price {
+    background-color: chartreuse;
+    width: 80px;
+    font-size: 20px;
+    margin-left: 23px;
+}   
+     .authorh4
+     {
+        display:inline-block;
+        margin-left:151px;
+     }  
+     .Pagerh4
+     {
+         display:inline-block;
+         margin-left:26px;
+     }   
+     .countryh4{
+         display:inline-block;
+         margin-left:151px;
+     }   
+     .publishdh4 
+     {
+         display:inline-block;
+         margin-left:34px;
+     }
+     <!-- book index-->
+     .mynavbar
+     {
+         background-color:#FFFCB5;
+          margin-top:60px;
+          margin-bottom:-50px; 
+     }
+#myTable {
+    margin-top: 60px;
+}
+.myHorzontal {
+    margin-top: 80px;
+}
