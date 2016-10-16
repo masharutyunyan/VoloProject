@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BooksCatalogue.Models.BooksOfAttributesViewModel>
+
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Name")
+            </th>
+            <th>
+                @Html.DisplayName("Value")
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttributeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttributeValue)
+                </td>
+
+                <td>
+                    <a href="@Url.Action("EditAppendAttribute", "Books",new { id =item.AttributeID})" id="EditAttributValue" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-pencil"> </span>
+                    </a>
+                    <a href="@Url.Action("DeleteAppendAttribute", "Books",new { id =item.AttributeID})" id="DeleteAttributValue" class="btn btn-default btn-sm" style="background-color:#D6BBA0;">
+                        <span class="glyphicon glyphicon-remove">
+                        </span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+@section scripts
+{
+    <script type="text/javascript"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Categoria/Categoria.js"></script>
+}
+
+
+
+
+
+
+

@@ -20,27 +20,44 @@ namespace BooksCatalogue.Helper
             var b = books.Where(s => s.BookName.Contains(searchText) || s.Price.ToString().Contains(searchText) || s.Author.FirstName.Contains(searchText));
             return b;
         }
-    
-    public static IQueryable<Book> Sort(string sortby, IQueryable<Book> sortBooks)
-    {
+
+        public static IQueryable<Book> Sort(string sortby, IQueryable<Book> sortBooks)
+        {
             if (sortby == "title")
                 sortBooks = sortBooks.OrderBy(x => x.BookName);
             if (sortby == "price")
-                
+
                 sortBooks = sortBooks.OrderBy(x => x.Price);
             if (sortby == "author")
                 sortBooks = sortBooks.OrderBy(x => x.Author.FirstName);
             return sortBooks;
         }
-       public static AttributeXMLTextValueModel XmlDeSerialization (string str)
+        public static AttributeXMLTextValueModel XmlTextValueDeSerialization(string str)////bazayum grvac xml formatov atributi arjeq@ vercum e  hamapatsaxan obyekti
         {
-            int  indexfirst = str.IndexOf("<Value>") +7;
-            int  indexlast = str.IndexOf("</Value>") - indexfirst;
-            int  c =  str.Count();
-            string s = str.Substring(indexfirst , indexlast);
+            int indexfirst = str.IndexOf("<Value>") + 7;
+            int indexlast = str.IndexOf("</Value>") - indexfirst;
+            string temp = str.Substring(indexfirst, indexlast);
             AttributeXMLTextValueModel XmlValue = new AttributeXMLTextValueModel();
-            XmlValue.Value = s;
-            return XmlValue; 
+            XmlValue.Value = temp;
+            return XmlValue;
+        }
+
+        public static AttributeXMLTextModel XmlTextDeSerialization(string str)//bazayum grvac xml formatov atributi anun@ vercum e  hamapatsaxan obyekti
+        {
+            AttributeXMLTextModel Xmltext = new AttributeXMLTextModel();
+            int indexfirst = str.IndexOf("<Name>") + 6;
+            int indexlast = str.IndexOf("</Name>") - indexfirst;
+            string temp = str.Substring(indexfirst, indexlast);
+            Xmltext.Name = temp;
+            indexfirst = str.IndexOf("<MaxCharacterCount>") + 19;
+            indexlast = str.IndexOf("</MaxCharacterCount>") - indexfirst;
+            temp = str.Substring(indexfirst, indexlast);
+            Xmltext.MaxCharacterCount = Int32.Parse(temp);
+            indexfirst = str.IndexOf("<MinCharacterCount>") + 19;
+            indexlast = str.IndexOf("</MinCharacterCount>") - indexfirst;
+            temp = str.Substring(indexfirst, indexlast);
+            Xmltext.MinCharacterCount = Int32.Parse(temp);
+            return Xmltext;
         }
 
     }

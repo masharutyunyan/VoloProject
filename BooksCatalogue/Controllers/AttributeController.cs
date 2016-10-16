@@ -30,11 +30,22 @@ namespace BooksCatalogue.Controllers
 
         [HttpPost]
          [ValidateAntiForgeryToken]
-        public  ActionResult Create([Bind(Include = "ID,AttributName,TypeID")] MyAttribute attribute)
+        public  ActionResult Create(string name, int TypeID, int maxCharackterCount, int mincharkcterCount)
         {
             if (ModelState.IsValid)
             {
-               Meneger.Meneger.SaveDB(attribute);
+                MyAttribute atr = new MyAttribute();
+                AttributeXMLTextModel attributeTextXmlName = new AttributeXMLTextModel();
+                attributeTextXmlName.MaxCharacterCount = maxCharackterCount;
+                attributeTextXmlName.MinCharacterCount = mincharkcterCount;
+                attributeTextXmlName.Name = name;
+                System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(attributeTextXmlName.GetType());
+                StringWriter stringWriter = new StringWriter();
+                atrXml.Serialize(stringWriter, attributeTextXmlName);
+                atr.AttributName = stringWriter.ToString();
+                atr.AttributeTextXmlName = attributeTextXmlName;
+                atr.TypeID = TypeID;
+                Meneger.Meneger.SaveDB(atr);
                 return RedirectToAction("Index");
             }
             ViewBag.TypeID = new SelectList(context.AttributesTypes, "ID", "AttributeType", attribute.TypeID);
@@ -49,6 +60,7 @@ namespace BooksCatalogue.Controllers
             }
 
             var attribute = Meneger.Meneger.Find(id);
+            attribute.AttributeTextXmlName = Helper.Helper.XmlTextDeSerialization(attribute.AttributName);
             if (attribute == null)
             {
                 return HttpNotFound();
@@ -58,12 +70,22 @@ namespace BooksCatalogue.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,AttributName,TypeID")] MyAttribute attribute)
+        public ActionResult Edit([Bind(Include = "ID,AttributName,TypeID")] MyAttribute attribute, string Name, int TypeID, int? MaxCharacterCount, int? MinCharacterCount)
         {
             if (ModelState.IsValid)
             {
-
-                Meneger.Meneger.SaveEdit(attribute);
+                MyAttribute atr = new MyAttribute();
+                AttributeXMLTextModel attributeTextXmlName = new AttributeXMLTextModel();
+                attributeTextXmlName.MaxCharacterCount = MaxCharacterCount;
+                attributeTextXmlName.MinCharacterCount = MinCharacterCount;
+                attributeTextXmlName.Name = Name;
+                System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(attributeTextXmlName.GetType());
+                StringWriter stringWriter = new StringWriter();
+                atrXml.Serialize(stringWriter, attributeTextXmlName);
+                atr.AttributName = stringWriter.ToString();
+                atr.AttributeTextXmlName = attributeTextXmlName;
+                atr.TypeID = attribute.TypeID;
+                Meneger.Meneger.SaveEdit(atr);
                 return RedirectToAction("Index");
             }
             ViewBag.TypeID = new SelectList(context.AttributesTypes, "ID", "AttributeType", attribute.TypeID);
@@ -76,7 +98,7 @@ namespace BooksCatalogue.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AttributeXMLTextValueModel attribute = Helper.Helper.XmlDeSerialization(context.AttributValues.Find(id).AttributValue1);
+            AttributeXMLTextValueModel attribute = Helper.Helper.XmlTextValueDeSerialization(context.AttributValues.Find(id).AttributValue1);
             if (attribute == null)
             {
                 return HttpNotFound();
@@ -92,7 +114,7 @@ namespace BooksCatalogue.Controllers
                 AttributValue attributeValue = new AttributValue();
                 attributeValue = context.AttributValues.Find(id);
                 AttributeXMLTextValueModel atrValue = new AttributeXMLTextValueModel();// texapoxel helper
-                atrValue = Helper.Helper.XmlDeSerialization(attributeValue.AttributValue1);
+                atrValue = Helper.Helper.XmlTextValueDeSerialization(attributeValue.AttributValue1);
                 atrValue.Value = value;
                 System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(atrValue.GetType());
                 StringWriter stringWriter = new StringWriter();
@@ -124,7 +146,7 @@ namespace BooksCatalogue.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AttributeXMLTextValueModel attribute = Helper.Helper.XmlDeSerialization(context.AttributValues.Find(id).AttributValue1);
+            AttributeXMLTextValueModel attribute = Helper.Helper.XmlTextValueDeSerialization(context.AttributValues.Find(id).AttributValue1);
             if (attribute == null)
             {
                 return HttpNotFound();
@@ -141,7 +163,22 @@ namespace BooksCatalogue.Controllers
             context.SaveChanges();
             return RedirectToAction("AttributeAddTextValue");
         }
-        //Get
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var attribute = Meneger.Meneger.Find(id);
+            attribute.AttributeTextXmlName = Helper.Helper.XmlTextDeSerialization(attribute.AttributName);
+            if (attribute == null)
+            {
+                return HttpNotFound();
+            }
+            return View(attribute);
+        }
+        //Get delete Attribut
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -176,10 +213,9 @@ namespace BooksCatalogue.Controllers
             foreach (var item in context.AttributValues)
             {
             AttributeXMLTextValueModel atrValue = new AttributeXMLTextValueModel();    
-            atrValue =  Helper.Helper.XmlDeSerialization(item.AttributValue1);
-            atrValue.ID = item.ID;
-            atrValueList.Add(atrValue);
-               
+            atrValue =  Helper.Helper.XmlTextValueDeSerialization(item.AttributValue1);
+            atrValue.AttributeValueID = item.ID;
+            atrValueList.Add(atrValue);          
             }
             
             return PartialView("_AttributeAddTextValue", atrValueList);//cucadrum e text tipi antributneri arjeqner@

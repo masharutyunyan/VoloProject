@@ -15,7 +15,7 @@
 </div>
 
 
-<table class="table" id="myTable" >
+<table class="table" id="myTable">
     <thead>
         <tr>
             <th>
@@ -24,6 +24,8 @@
             <th>
                 @Html.DisplayName("Type")
             </th>
+            
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -31,19 +33,19 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.AttributName)
+                    @Html.DisplayFor(modelItem => item.AttributeTextXmlName.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AttributesType.AttributeType)
                 </td>
                
                 <td>
-                 
+                    <a href="@Url.Action("Details", "Attribute",new { id = item.ID })" id="Table" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="@Url.Action("Edit", "Attribute",new { id = item.ID })" id="Table" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i></a>
-                    <a href="@Url.Action("Delete", "Attribute", new { id = item.ID })"id="Table" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-remove"></i></a>
-                     <a href="@Url.Action("AddAttributeValue", "Attribute",new { id = item.ID })" id="Table" class="btn btn-default btn-sm" style="background-color:#D6BBA0;"> <span class="glyphicon glyphicon-plus-sign">
-</span>Value </a>
-                  
+                    <a href="@Url.Action("Delete", "Attribute", new { id = item.ID })" id="Table" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-remove"></i></a>
+                    <a href="@Url.Action("AddAttributeValue", "Attribute",new { id = item.ID })" id="Table" class="btn btn-default btn-sm" style="background-color:#D6BBA0;">
+                        <span class="glyphicon glyphicon-plus-sign"></span>Value
+                    </a>
                 </td>
             </tr>
         }
@@ -55,10 +57,12 @@
 @section scripts
 {
     <script type="text/javascript"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="~/Scripts/Categoria/Categoria.js"></script>
 }
+
 
 
 

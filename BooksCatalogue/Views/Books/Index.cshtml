@@ -14,8 +14,9 @@
     </a>
     @*@if (User.Identity.IsAuthenticated)
     {*@
-    <a style="width: 120px ; height:38px; font-size:18px;color:black; margin-top: -59px;padding-right:9px; margin-bottom:-66px; background-color:#D6BBA0;"data-toggle="modal" id="CreateBook" data-target="#myModal" title="Back to list" class="btn pd10 tip" ><span class="glyphicon glyphicon-plus-sign"></span> Book</a>
-    
+    <a href="@Url.Action("Create", "Books")" id="grid" class="btn btn-default btn-sm " style="font-size: 17px; height:38px; margin-bottom:-8px;background-color: #D6BBA0;margin-left:4px">
+        <span class="glyphicon glyphicon-th"></span> Book
+    </a>
 </div>
 <div class="container">
     <!-- Trigger the modal with a button -->
@@ -112,6 +113,7 @@
                     @Html.DisplayFor(modelItem => item.PageCount)
                 </td>
                 <td>
+
                     @Html.DisplayFor(modelItem => item.PublishDate)
                 </td>
                 <td>
@@ -138,7 +140,9 @@
                     {*@
                         <a href="#myModal" class="btnDelet btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-remove"></i></a>
 
-                    
+                    <a href="@Url.Action("AppendAttributeMeneger", "Books",new { id = item.ID })" id="Table" class="btn btn-default btn-sm" style="background-color:#D6BBA0;">
+                        <span class="glyphicon glyphicon-list-alt"></span>Attribute
+                    </a>
 
                 </td>
             </tr>

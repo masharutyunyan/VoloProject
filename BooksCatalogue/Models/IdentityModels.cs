@@ -33,5 +33,11 @@ namespace BooksCatalogue.Models
         public System.Data.Entity.DbSet<BooksCatalogue.Models.MyAttribute> MyAttributes { get; set; }
 
         public System.Data.Entity.DbSet<Entity.Attribute> AttributValues { get; set; }
+
+        public System.Data.Entity.DbSet<Entity.Book> Books { get; set; }
+
+        public System.Data.Entity.DbSet<Entity.Author> Authors { get; set; }
+
+        public System.Data.Entity.DbSet<Entity.Country> Countries { get; set; }
     }
 }

@@ -1,0 +1,45 @@
+﻿@model BooksCatalogue.Models.MyAttribute
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttributeTextXmlName.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Type")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttributesType.AttributeType)
+        </dd>
+        <dt>
+            @Html.DisplayName("Max")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttributeTextXmlName.MaxCharacterCount)
+        </dd>
+        <dt>
+            @Html.DisplayName("Min")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttributeTextXmlName.MinCharacterCount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

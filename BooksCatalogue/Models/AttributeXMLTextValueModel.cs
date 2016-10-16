@@ -10,7 +10,7 @@ namespace BooksCatalogue.Models
     [XmlRoot("AttributeXMLTextValueModel")]
     public class AttributeXMLTextValueModel
     {
-        public int ID { get; set; }
+        public int AttributeValueID { get; set; }
         public string Value { get; set; }
       
     public AttributeXMLTextValueModel()

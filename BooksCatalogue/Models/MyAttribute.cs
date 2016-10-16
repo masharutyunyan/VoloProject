@@ -15,7 +15,7 @@ namespace BooksCatalogue.Models
         {
             this.AttributValues = new HashSet<AttributValue>();
         }
-
+        public AttributeXMLTextModel AttributeTextXmlName { get; set; }
         public int ID { get; set; }
         public string AttributName { get; set; }
         public Nullable<int> TypeID { get; set; }

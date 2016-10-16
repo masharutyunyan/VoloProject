@@ -1,0 +1,129 @@
+﻿@model Entity.Book
+
+@{
+    ViewBag.Title = "AppendAttribute";
+}
+
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<div id="gridContent" style="width:600px; height:400px; background-attachment:local; margin-left:14px; background-color:azure; float:left ;margin-top:80px;margin-bottom: 20px;">
+
+    <div class="row">
+        <div class="col-lg-3">
+
+
+            <img class="btnImg" style="margin-top: 24px ! important;margin:15px;" src="~/Picture/@Model.PictureName" width="100" height="150" />
+
+            <div class="price" style="background-color:chartreuse; width:80px;font-size:20px;margin-left:23px;">
+                @{
+                    var pr = Convert.ToDecimal(@Model.Price);
+                    var pr1 = pr.ToString("C2");
+
+                }
+                @pr1
+            </div>
+        </div>
+        <div class="col-lg-9 my-class">
+
+            <h3> <font style="font-style:oblique">@Model.BookName</font></h3>
+            <div>
+                <h4>Desckription</h4>
+                @if (Model.Description != null)
+            {
+                if (Model.Description.Length > 350)
+                {
+                    var str = String.Concat(Model.Description.Substring(0, 350), "...");
+                        <p>@str</p>
+                    }
+                    else
+                    {
+                        <p>@Model.Description</p>
+                    }
+                }
+                else
+                {
+                    <p> No Description</p>
+                }
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <h4 class="authorh4">Author:</h4>
+        @Model.Author.FirstName
+        <h4 class="Pagerh4" style="margin-left:98px; margin-left: 96px;">Pager:</h4>
+        @Model.PageCount
+    </div>
+    <div>
+        <h4 class="countryh4">Country:</h4>
+        @Model.Country.CountryName
+        <h4 class="publishdh4"style="margin-left:100px;">Published:</h4>
+        @{
+            string temp = Model.PublishDate.ToString().Substring(0, 10);
+        }
+        @temp
+    </div>
+
+    <div class="row" style="margin-left:15px;">
+        @using (Html.BeginForm("AppendAttribute","Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+        <div class="form-group" style="display: inline-block; margin-left: 116px; margin-top: 19px;">
+
+            @Html.Label("Attributes:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="padding-left: 55px;">
+
+                <select id="myselect" onchange="this.form.submit();" style="height:33px;" name="ID">
+                <option value="0">Select</option>
+
+                @for (int i = 0; i < Model.SelectAttributeList.Count; i++)
+                {
+                   <option value="@Model.SelectAttributeList[i].Value ">@Model.SelectAttributeList[i].Text</option>
+                }
+                </select>
+                
+            </div>
+        </div>
+            if(Model.AttributeValues.Count>0)
+            {
+                <div class="form-group" style="display:inline-block; margin-left: -16px;; ">
+
+                    @Html.Label("Value:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10" style="padding-left: 32px;">
+
+
+                        <select id="myselect"style="height:33px;" name="AttributeValueID">
+                                  <option value="0">Select</option>
+
+                            @for (int i = 0; i < Model.SelectAttributeValueList.Count; i++)
+                            {
+                                <option value="@Model.SelectAttributeValueList[i].Value ">@Model.SelectAttributeValueList[i].Text</option>
+                            }
+                        </select>
+
+                    </div>
+                </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style ="margin-left: -13px;margin-top:-10px">
+                    <input type="submit" value="Add"  class="btn btn-default" />
+                </div>
+            </div>
+            }
+        }
+
+</div>
+</div>
+<div style="display:inline-block;padding-left: 44px;margin-top: 43px;">
+    @{
+        Html.RenderAction("ShowAttributeList", "Books");
+
+    }
+
+
+</div>
+
+
+
+

@@ -1,0 +1,95 @@
+﻿@model BooksCatalogue.Models.BooksOfAttributesViewModel
+
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Grid.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<table class="table" id="Table" style="margin-top:90px;">
+    <thead>
+        <tr>       
+            <th>
+
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Attrribute Name")
+            </th>
+            <th>
+                @Html.DisplayName("Attrribute Value")
+            </th>
+        </tr>
+    </thead>
+    <tbody>   
+            <tr>  
+                <td>
+                    @Html.DisplayFor(modelItem => Model.BookName)
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => Model.AttributeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.AttributeValue)
+                </td>          
+            </tr>                      
+    </tbody>
+</table>
+
+<div class="row" style="margin-right:15px;">
+    @using (Html.BeginForm("EditAppendAttribute", "Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group" style="display:inline-block; margin-left: 23px; ">
+
+            @Html.Label("Attributes:", htmlAttributes: new { @class = "control-label col-md-2", @style="padding - left: 2px;" })
+            <div class="col-md-10" style="padding-left: 47px;">
+
+                <select id="myselect" onchange="this.form.submit();" style="height:33px;" name="ID">
+                    <option value="0">Select</option>
+
+                    @for (int i = 0; i < Model.SelectAttributeList.Count; i++)
+                       {
+                        <option value="@Model.SelectAttributeList[i].Value ">@Model.SelectAttributeList[i].Text</option>
+                       }
+                  </select>
+
+            </div>
+        </div>
+        if (Model.AttributeValues.Count > 0)
+        {
+            <div class="form-group" style="display:inline-block; margin-left:-58px;">
+
+                @Html.Label("Value:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" style="padding-left: 47px;">
+
+
+                    <select id="myselect" style="height:33px;" name="AttributeValueID">
+                        <option value="0">Select</option>
+
+                        @for (int i = 0; i < Model.SelectAttributeValueList.Count; i++)
+                        {
+                            <option value="@Model.SelectAttributeValueList[i].Value ">@Model.SelectAttributeValueList[i].Text</option>
+                        }
+                    </select>
+
+                </div>
+            </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add" style="margin-top: -93px; margin-left:196px;" class="btn btn-default"  />
+                    </div>
+                </div>
+        }
+    }
+
+</div>
+
+@section scripts
+{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Categoria/Categoria.js"></script>
+}

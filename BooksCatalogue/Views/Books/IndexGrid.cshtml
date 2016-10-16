@@ -42,11 +42,11 @@
          
         <div class="btn-group">
            
-            <a href="@Url.Action("Index", "Books")" id="grid" class="btn btn-default btn-sm " style="font-size: 17px; height:38px; margin-bottom:-8px;background-color: #D6BBA0;margin-left:4px">
-                <span class="glyphicon glyphicon-th-list"></span>Grid
+            <a href="@Url.Action("Index", "Books")" id="grid" class="btn btn-default btn-sm " style="font-size: 17px; height:38px; margin-bottom:-1px;background-color: #D6BBA0;margin-left:4px">
+                <span class="glyphicon glyphicon-th-list"></span>Table
             </a>
           
-                <a  data-toggle="modal" id="CreateBook" data-target="#myModal" title="Back to list" class="btn pd10 tip"> <span class="glyphicon glyphicon-plus-sign"></span> Book</a>
+                <a  data-toggle="modal" id="CreateBook" data-target="#myModal" title="Create book" class="btn pd10 tip"> <span class="glyphicon glyphicon-plus-sign"></span> Book</a>
            
        
         </div>
@@ -57,10 +57,10 @@
             <input type="text" id="search" name="search" style="float:left" class="search form-control " placeholder="Search Books">
                 </div>
         <div style="display:inline-block;float:right">
-            @*@Html.DropDownList("sortby", items, new { @class = "form-control", @style = "height:33px" })*@
             
             <select id="myselect" onchange="this.form.submit();" style="height:33px;" name="sortby">
 
+                <option value="select">Select</option>
                 <option value="title">Title</option>
 
                 <option value="author">Aothor</option>
@@ -141,6 +141,9 @@
                     <a href="#myModal" class="btnDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="#myModal" class="btnEditor btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i></a>
                     <a href="#myModal" class="btnDelet btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-remove"></i></a>
+                    <a href="@Url.Action("AppendAttributeMeneger", "Books",new { id = item.ID })" id="Table" class="btn btn-default btn-sm" style="background-color:#D6BBA0;">
+                        <span class="glyphicon glyphicon-list-alt"></span>Attribute
+                    </a>
 
                 </div>
             </div>

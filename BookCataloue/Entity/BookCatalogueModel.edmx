@@ -71,7 +71,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AttributName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AttributName" Type="xml" />
           <Property Name="TypeID" Type="int" />
         </EntityType>
         <EntityType Name="AttributesType">
@@ -414,7 +414,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AttributName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="AttributName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TypeID" Type="Int32" />
           <NavigationProperty Name="AttributesType" Relationship="Self.FK_Attributes_AttributesType" FromRole="Attributes" ToRole="AttributesType" />
           <NavigationProperty Name="AttributValues" Relationship="Self.FK_AttributValue_Attributes" FromRole="Attributes" ToRole="AttributValue" />

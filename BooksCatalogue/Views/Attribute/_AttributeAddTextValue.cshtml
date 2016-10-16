@@ -6,43 +6,33 @@
 }
 <head>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 
-<table class="table" id="myTable" style="margin-left: 191px;">
+<table class="table" id="myTable">
     <thead>
         <tr>
             <th>
                 @Html.DisplayName("Value")
             </th>
            
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-              
                 <td>
                     @Html.DisplayFor(modelItem => item.Value)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.MaxCharactersCount)
-                </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.minCharactersCount)
-                </td>*@
-                <td>
-                    <a href="@Url.Action("EditAttributeValue", "Attribute",new { id =item.ID})" id="EditAttributValue" class="btn btn-default btn-sm" >
-                        <span class="glyphicon glyphicon-pencil">
-                        </span>
-                    </a>                
-                </td>
-                <td>
-                    <a href="@Url.Action("DeleteAttributeValue", "Attribute",new { id =item.ID})" id="DeleteAttributValue" class="btn btn-default btn-sm" style="background-color:#D6BBA0;">
-                        <span class="glyphicon glyphicon-remove">
-                        </span>
-                    </a>
-
+                    <a href="@Url.Action("EditAttributeValue", "Attribute",new { id =item.AttributeValueID})" id="EditAttributValue" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-pencil"> </span>
+                    </a> 
+                    <a href="@Url.Action("DeleteAttributeValue", "Attribute",new { id =item.AttributeValueID})" id="DeleteAttributValue" class="btn btn-default btn-sm" style="background-color:#D6BBA0;">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>      
                 </td>
             </tr>
         }
@@ -54,12 +44,20 @@
 @section scripts
 {
     <script type="text/javascript"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="~/Scripts/Categoria/Categoria.js"></script>
-    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
-
 }
+
+
+
+
+
+
+
+
+
 
 
 

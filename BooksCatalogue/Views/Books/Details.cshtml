@@ -57,8 +57,11 @@
     <div>
         <h4 class="countryh4" ">Country:</h4>
         @Model.Country.CountryName
-        <h4 class="publishdh4" ">Published:</h4>
-        @Model.PublishDate
+        <h4 class="publishdh4">Published:</h4>
+        @{ 
+            var d = @Model.PublishDate.ToString().Substring(0, 10);
+
+        }
     </div>
     <div class="row" style="float:right;margin-right:15px;">
        

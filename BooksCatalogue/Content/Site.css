@@ -149,7 +149,7 @@ btnPanelBooksIndex{
      .Pagerh4
      {
          display:inline-block;
-         margin-left:26px;
+         margin-left:92px;
      }   
      .countryh4{
          display:inline-block;
@@ -157,8 +157,7 @@ btnPanelBooksIndex{
      }   
      .publishdh4 
      {
-         display:inline-block;
-         margin-left:34px;
+        
      }
      <!-- book index-->
      .mynavbar
@@ -172,4 +171,25 @@ btnPanelBooksIndex{
 }
 .myHorzontal {
     margin-top: 80px;
+}
+<!--
+Attribute/AttributeAddTextValue -->
+
+.mynavbar {
+    background-color:#FFFCB5; 
+    margin-top:60px;
+}
+#grid{
+    font-size: 17px; 
+       height:38px;
+     margin-bottom:-8px;
+     background-color: #D6BBA0;
+     margin-left:4px"
+}
+ <!-- Attribute/AttributeAddTextValue -->
+#attributevalueList{
+    display: inline-block;
+    float: right;
+    margin-top: -354px;
+    margin-right: 60px;
 }

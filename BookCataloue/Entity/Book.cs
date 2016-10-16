@@ -11,7 +11,8 @@ namespace Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class Book
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +20,15 @@ namespace Entity
         {
             this.Books_of_Attributes = new HashSet<Books_of_Attributes>();
             this.UserBooks = new HashSet<UserBook>();
+            this.Atributes = new List<Attribute>();
+            this.SelectAttributeList = new List<SelectListItem>();
+            this.SelectAttributeValueList= new List<SelectListItem>();
+            this.AttributeValues = new List<AttributValue>();
         }
-    
+        
         public int ID { get; set; }
+        public int AttributeID { get; set; }
+
         public string BookName { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string Description { get; set; }
@@ -37,5 +44,11 @@ namespace Entity
         public virtual ICollection<Books_of_Attributes> Books_of_Attributes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserBook> UserBooks { get; set; }
+        public List<Entity.Attribute> Atributes { get; set; }
+        public List<SelectListItem> SelectAttributeList { get; set; }
+        public List<SelectListItem> SelectAttributeValueList { get; set; }
+
+        public List<Entity.AttributValue> AttributeValues { get; set; }
+
     }
 }
