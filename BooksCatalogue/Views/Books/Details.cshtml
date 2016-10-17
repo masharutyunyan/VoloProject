@@ -55,13 +55,13 @@
         @Model.PageCount
     </div>
     <div>
-        <h4 class="countryh4" ">Country:</h4>
+        <h4 class="countryh4">Country:</h4>
         @Model.Country.CountryName
-        <h4 class="publishdh4">Published:</h4>
-        @{ 
-            var d = @Model.PublishDate.ToString().Substring(0, 10);
-
+        <h4 class="publishdh4" style="margin-left: 376px;  margin-top: -28px;">Published:</h4>
+        @{
+            string temp = Model.PublishDate.ToString().Substring(0, 10);
         }
+        <p style="margin-left: 466px; margin-top: -29px;">@temp</p>  
     </div>
     <div class="row" style="float:right;margin-right:15px;">
        

@@ -128,12 +128,12 @@ btnPanelBooksIndex{
     margin-bottom: -66px;
     background-color: #D6BBA0;
 }
-#Publishd{
+.Publishd{
     display:inline-block;
     margin-top:5px
 }
 
-<!-- Details-->
+<!-- Boo\Details-->
 
 .price {
     background-color: chartreuse;
@@ -155,10 +155,7 @@ btnPanelBooksIndex{
          display:inline-block;
          margin-left:151px;
      }   
-     .publishdh4 
-     {
-        
-     }
+   
      <!-- book index-->
      .mynavbar
      {
@@ -192,4 +189,99 @@ Attribute/AttributeAddTextValue -->
     float: right;
     margin-top: -354px;
     margin-right: 60px;
+}
+      Book/-IndexGrid->
+#IndexGridserch{
+      margin-top:14px;
+      background-color:#f5f5f5 !important;
+      width: 1043px; 
+      margin-left: 20px;
+          }
+#searchrP{
+    float:left;
+    margin-left:60px;
+    padding-right:10px;
+}
+#gridContent{
+     width:500px; 
+     height:330px; 
+     background-color:#FFFCB5;
+     margin-left:37px; float:left;
+     margin-top:10px;
+}
+.price{
+   background-color:chartreuse;
+    width:80px;
+    font-size:20px;
+    margin-left:23px;
+}
+.author{
+    display:inline-block;
+    margin-left:130px;
+}
+#action{
+    float:right;
+    margin-right:15px;
+}
+#contenierContent{
+    margin-top:100px;
+    margin-left:21px;
+    background-color:#FFFCB5;
+    margin-right: 50px;
+}
+#grid
+{
+      font-size: 17px;
+      height:38px; 
+      margin-bottom:-1px;
+      background-color: 
+      #D6BBA0;margin-left:4px
+}
+/* book/Index*/
+
+#IndexGridContent{
+    font-size: 17px;
+    height:38px;
+    margin-bottom:-8px;
+    background-color: #D6BBA0;
+    margin-left:4px
+}
+#IndexCreate{
+     font-size: 17px;
+     height:38px;
+     margin-bottom:-8px;
+     background-color: #D6BBA0;
+     margin-left:4px
+
+}
+#mynavbar{
+    background-color:#FFFCB5;
+    margin-top:60px;
+}
+/* book/EditAppendAttribute*/
+
+#myselect {
+     height:33px;
+}
+/* book/Edit*/
+
+#jpg
+{
+    height:33px;
+}
+/* Layout*/
+
+.btnNav{
+ color:#FFFCB5;
+ display:inline-block;
+ font-size:19px;
+ margin-top:0px
+}
+#editSave {
+    padding-bottom: 10px;
+    margin-left: 186px;
+    margin-top: 12px;
+}
+#attributedDelete {
+    padding-bottom: 20px;
 }

@@ -52,19 +52,18 @@
     <div>
         <h4 class="authorh4">Author:</h4>
         @Model.Author.FirstName
-        <h4 class="Pagerh4" style="margin-left:98px; margin-left: 96px;">Pager:</h4>
+        <h4 class="Pagerh4" style="margin-left:98px">Pager:</h4>
         @Model.PageCount
     </div>
     <div>
         <h4 class="countryh4">Country:</h4>
         @Model.Country.CountryName
-        <h4 class="publishdh4"style="margin-left:100px;">Published:</h4>
+        <h4 class="publishdh4" style="margin-left: 376px;  margin-top: -28px;">Published:</h4>
         @{
             string temp = Model.PublishDate.ToString().Substring(0, 10);
         }
-        @temp
+        <p style="margin-left: 466px; margin-top: -29px;">@temp</p>  
     </div>
-
     <div class="row" style="margin-left:15px;">
         @using (Html.BeginForm("AppendAttribute","Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {

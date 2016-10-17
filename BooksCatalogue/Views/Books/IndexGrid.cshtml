@@ -1,177 +1,163 @@
 ﻿@model IEnumerable<Entity.Book>
 @using System.Web.Mvc.Html;
 @using BooksCatalogue.Helper
-@{
-
-
-    int current = ViewBag.Page;
-    int size = ViewBag.PageSize;
-    int total = ViewBag.Count;
-   
-    ViewBag.Title = "IndexGrid";
-    string serchTemp = ViewBag.searchBooks;
-}
+<head>
  <link href="~/Content/Grid.css" rel="stylesheet" />
+ </head>
+        @{
+            int current = ViewBag.Page;
+            int size = ViewBag.PageSize;
+            int total = ViewBag.Count;
+            ViewBag.Title = "IndexGrid";
+            string serchTemp = ViewBag.searchBooks;
+        }
 
- <div id="div1">  
-<div class="container">
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div id="modal-content">
-                        cargando.....
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</div>
-<div class="container">
-    <div class="well well-sm" style="margin-top:100px;margin-left:21px;background-color:#FFFCB5;margin-right: 50px;">
-    @using (Html.BeginForm("IndexGrid", "books", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    { 
-         @Html.AntiForgeryToken();
-       
-         
-        <div class="btn-group">
-           
-            <a href="@Url.Action("Index", "Books")" id="grid" class="btn btn-default btn-sm " style="font-size: 17px; height:38px; margin-bottom:-1px;background-color: #D6BBA0;margin-left:4px">
-                <span class="glyphicon glyphicon-th-list"></span>Table
-            </a>
-          
-                <a  data-toggle="modal" id="CreateBook" data-target="#myModal" title="Create book" class="btn pd10 tip"> <span class="glyphicon glyphicon-plus-sign"></span> Book</a>
-           
-       
-        </div>
-                <div style="display:inline-block; float:right;padding-left:-2px;">
-            <button type="submit" class="btn btn-default"  style="background-color:cornflowerblue"><span class="glyphicon glyphicon-search"></span></button>
-        </div>
-            <div style="display:inline-block;float:right">
-            <input type="text" id="search" name="search" style="float:left" class="search form-control " placeholder="Search Books">
-                </div>
-        <div style="display:inline-block;float:right">
-            
-            <select id="myselect" onchange="this.form.submit();" style="height:33px;" name="sortby">
-
-                <option value="select">Select</option>
-                <option value="title">Title</option>
-
-                <option value="author">Aothor</option>
-
-                <option value="price">Price</option>
-
-            </select>
-            </div>
-    }
-    </div>
-    <div id="products" class="row list-group">
-       @{
-           if (serchTemp == "null")
-           {
-            <div style="margin-top:14px;background-color:#f5f5f5 !important;width: 1043px; margin-left: 20px;">
-       
-                <div style="float:left;margin-left:60px; padding-right:10px;">
-                    <p> not found this item </p>
-                </div>
-                <div style="float:left">
-                    @Html.ActionLink("Back to list", "IndexGrid", "Books")
-                </div>
-            </div>
-               serchTemp = "";
-           }
-    } 
-        @foreach (var item in Model)
-        {
-            <div  id="gridContent" style="width:500px; height:300px; background-color:#FFFCB5; margin-left:37px; float:left ;margin-top:10px;">
-             
-                <div class="row">
-                    <div class="col-lg-3">
-
-                        <a href="#myModal" class="btnDetails btn-link btn-info" data-toggle="modal"data-id="@item.ID">
-                            <img class="btnImg"  style="margin-top: 24px ! important;margin:15px;" src="~/Picture/@item.PictureName" width="100" height="150"/>
-                        </a>
-                            <div class="price" style="background-color:chartreuse; width:80px;font-size:20px;margin-left:23px;">
-                               @{ 
-                                   var pr = Convert.ToDecimal(item.Price);
-                                   var pr1 = pr.ToString("C2");
-                                   
-                               }
-                                @pr1
+        <div id="div1">
+            <div class="container">
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div id="modal-content">
+                                    cargando.....
+                                </div>
                             </div>
-                    </div>
-                    <div class="col-lg-9 my-class">
-
-                        <h3> @item.BookName</h3>
-                        <div>
-                            <h4>Desckription</h4>
-                            @if (item.Description != null)
-                            {
-                            if (item.Description.Length > 350)
-                            {
-                                var str = String.Concat(item.Description.Substring(0, 350), "...");
-                            <p>@str</p>
-                            }
-                            else
-                            {
-                                <p>@item.Description</p>
-                            }
-                            }
-                            else
-                            {
-                                <p> No Description</p>
-                            }
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
 
                     </div>
                 </div>
-                <div>
 
-                    <h4 style="display:inline-block;margin-left:130px;">Author:</h4>
-                    @item.Author.FirstName
+            </div>
+            <div class="container">
+                <div class="well well-sm"  id ="contenierContent">
+                    @using (Html.BeginForm("IndexGrid", "books", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken();
+
+
+                        <div class="btn-group">
+
+                            <a href="@Url.Action("Index", "Books")" id="grid" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-th-list"></span>Table
+                            </a>
+
+                            <a data-toggle="modal" id="CreateBook" data-target="#myModal" title="Create book" class="btn pd10 tip"> <span class="glyphicon glyphicon-plus-sign"></span> Book</a>
+
+
+                        </div>
+                        <div style="display:inline-block; float:right;padding-left:-2px;">
+                            <button type="submit" class="btn btn-default" style="background-color:cornflowerblue"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                        <div style="display:inline-block;float:right">
+                            <input type="text" id="search" name="search" style="float:left" class="search form-control " placeholder="Search Books">
+                        </div>
+                        <div style="display:inline-block;float:right">
+
+                            <select id="myselect" onchange="this.form.submit();" style="height:33px;" name="sortby">
+
+                                <option value="select">Select</option>
+                                <option value="title">Title</option>
+
+                                <option value="author">Aothor</option>
+
+                                <option value="price">Price</option>
+
+                            </select>
+                        </div>
+                    }
                 </div>
-                <div class="row" style="float:right;margin-right:15px;">
-                    @*<a href="#myModal" class="CreateBook btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-plus"></i></a>*@
-                    <a href="#myModal" class="btnDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="#myModal" class="btnEditor btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i></a>
-                    <a href="#myModal" class="btnDelet btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-remove"></i></a>
-                    <a href="@Url.Action("AppendAttributeMeneger", "Books",new { id = item.ID })" id="Table" class="btn btn-default btn-sm" style="background-color:#D6BBA0;">
-                        <span class="glyphicon glyphicon-list-alt"></span>Attribute
-                    </a>
+                <div id="products" class="row list-group">
+                    @{
+                        if (serchTemp == "null")
+                        {
+                            <div id="IndexGridsearch">
 
+                                <div id="searchrP">
+                                    <p> not found this item </p>
+                                </div>
+                                <div style="float:left">
+                                    @Html.ActionLink("Back to list", "IndexGrid", "Books")
+                                </div>
+                            </div>
+                            serchTemp = "";
+                        }
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <div id="gridContent">
+
+                            <div class="row">
+                                <div class="col-lg-3">
+
+                                    <a href="#myModal" class="btnDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID">
+                                        <img class="btnImg" style="margin-top: 24px ! important;margin:15px;" src="~/Picture/@item.PictureName" width="100" height="150" />
+                                    </a>
+                                    <div class="price">
+                                        @{
+                                            var pr = Convert.ToDecimal(item.Price);
+                                            var pr1 = pr.ToString("C2");
+
+                                        }
+                                        @pr1
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 my-class">
+
+                                    <h3> @item.BookName</h3>
+                                    <div>
+                                        <h4>Desckription</h4>
+                                        @if (item.Description != null)
+                                        {
+                                            if (item.Description.Length > 350)
+                                            {
+                                                var str = String.Concat(item.Description.Substring(0, 350), "...");
+                                                <p>@str</p>
+                                            }
+                                            else
+                                            {
+                                                <p>@item.Description</p>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <p> No Description</p>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div>
+
+                                <h4 class="author">Author:</h4>
+                                @item.Author.FirstName
+                            </div>
+                            <div class="row" id="action">
+                                <a href="#myModal" class="btnDetails btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                <a href="#myModal" class="btnEditor btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i></a>
+                                <a href="#myModal" class="btnDelet btn-link btn-info" data-toggle="modal" data-id="@item.ID"><i class="glyphicon glyphicon-remove"></i></a>
+                                <a href="@Url.Action("AppendAttributeMeneger", "Books",new { id = item.ID })" id="Table" class="btn btn-default btn-sm" style="background-color:#D6BBA0;">
+                                    <span class="glyphicon glyphicon-list-alt"></span>Attribute
+                                </a>
+
+                            </div>
+                        </div>
+
+                                            }
                 </div>
             </div>
-
-        }
+            @Html.PagePrev(current, size, total)
+            @Html.PageNext(current, size, total)
         </div>
-    </div>
-     @Html.PagePrev(current, size, total)
-     @Html.PageNext(current, size, total)
-</div>
-    @section scripts
+        @section scripts
     {
-        
-
-        <script>
-          
-          
-            $(document).ready(function () {
-                $("search").bind("click", function () {
-                    alert("The paragraph was clicked.");
-                });
-            });
-
-        </script>
-        <link href="~/Content/Grid.css" rel="stylesheet" />
-       <link href="~/Content/Site.css" rel="stylesheet" />
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/Categoria/Categoria.js"></script>
-}
+            <link href="~/Content/Grid.css" rel="stylesheet" />
+            <link href="~/Content/Site.css" rel="stylesheet" />
+            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="~/Scripts/Categoria/Categoria.js"></script>
+        }

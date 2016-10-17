@@ -1,20 +1,20 @@
 ﻿@model IEnumerable<Entity.Book>
 @using Entity;  
-@{ 
-    BooksCatalogueEntities1 db = new BooksCatalogueEntities1();
- }
 <head>
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/Grid.css" rel="stylesheet" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<div class="navbar navbar-inverse mynavbar"   style="background-color:#FFFCB5; margin-top:60px;">   
-         <a href="@Url.Action("IndexGrid", "Books")" id="grid" class="btn btn-default btn-sm " style="font-size: 17px; height:38px; margin-bottom:-8px;background-color: #D6BBA0;margin-left:4px">
+@{ 
+    BooksCatalogueEntities1 db = new BooksCatalogueEntities1();
+ }
+<div class="navbar navbar-inverse" id="mynavbar">   
+         <a href="@Url.Action("IndexGrid", "Books")" id="IndexGridContent" class="btn btn-default btn-sm">
         <span class="glyphicon glyphicon-th"></span>Grid
     </a>
     @*@if (User.Identity.IsAuthenticated)
     {*@
-    <a href="@Url.Action("Create", "Books")" id="grid" class="btn btn-default btn-sm " style="font-size: 17px; height:38px; margin-bottom:-8px;background-color: #D6BBA0;margin-left:4px">
+    <a href="@Url.Action("Create", "Books")" id="IndexCreate" class="btn btn-default btn-sm ">
         <span class="glyphicon glyphicon-th"></span> Book
     </a>
 </div>
