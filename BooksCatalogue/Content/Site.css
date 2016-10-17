@@ -285,3 +285,8 @@ Attribute/AttributeAddTextValue -->
 #attributedDelete {
     padding-bottom: 20px;
 }
+#attributeCreate{
+    padding-bottom: 25px;
+    margin-left: 186px;
+    margin-top: 8px;
+}
