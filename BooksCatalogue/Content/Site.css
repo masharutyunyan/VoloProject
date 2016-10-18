@@ -128,12 +128,16 @@ btnPanelBooksIndex{
     margin-bottom: -66px;
     background-color: #D6BBA0;
 }
+#sort{
+    background-color: #D6BBA0;
+
+}
 .Publishd{
     display:inline-block;
     margin-top:5px
 }
 
-<!-- Boo\Details-->
+/*Boo\Details*/
 
 .price {
     background-color: chartreuse;
@@ -156,7 +160,7 @@ btnPanelBooksIndex{
          margin-left:151px;
      }   
    
-     <!-- book index-->
+    /*book index*/
      .mynavbar
      {
          background-color:#FFFCB5;
@@ -169,8 +173,8 @@ btnPanelBooksIndex{
 .myHorzontal {
     margin-top: 80px;
 }
-<!--
-Attribute/AttributeAddTextValue -->
+/*
+Attribute/AttributeAddTextValue -->*/
 
 .mynavbar {
     background-color:#FFFCB5; 

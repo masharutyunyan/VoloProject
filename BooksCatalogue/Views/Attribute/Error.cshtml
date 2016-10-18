@@ -3,9 +3,22 @@
     ViewBag.Title = "Error";
 }
 
-<h2>Error</h2>
-<p> @Model.Messag</p>
-<div class="form-actions no-color">
-    <input type="submit" value="Delete" class="btn btn-default" />
+@if (Model.Name == "CreateAttribute")
+
+{
+    <div style="margin-top:60px;">
+        <p> @Model.Messag</p>
+    </div>
+    <div class="form-actions no-color">
+        <a href="@Url.Action("Create", "Attribute")" id="Table" class="btn btn-default btn-sm">
+            Back to
+        </a>
+</div>
+}
+        else
+        {
+<p style = "margin-top:60px;"> @Model.Messag </p>
+ <div class="form-actions no-color">
     @Html.ActionLink("Back to List", "Index")
 </div>
+}

@@ -7,6 +7,8 @@ namespace BooksCatalogue.Models
 {
     public class Error
     {
-         public string Messag { get; set; }
+        public string Name { get; set; }
+
+        public string Messag { get; set; }
     }
 }

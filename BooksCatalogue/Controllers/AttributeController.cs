@@ -16,6 +16,8 @@ namespace BooksCatalogue.Controllers
     public class AttributeController : Controller
     {
         public  static MyAttribute attribute;
+        public static Error error;
+
         private BooksCatalogueEntities1 context = new BooksCatalogueEntities1();
         // GET: Attribute
         public  ActionResult Index()
@@ -32,6 +34,14 @@ namespace BooksCatalogue.Controllers
          [ValidateAntiForgeryToken]
         public  ActionResult Create(string name, int TypeID, int maxCharackterCount, int mincharkcterCount)
         {
+            if (maxCharackterCount < mincharkcterCount)
+            {
+                Error errortemp = new Error();
+                errortemp.Name = "CreateAttribute";
+                errortemp.Messag = "inpute error. maxCharackterCount(Max) < mincharkcterCount(Min)";
+                error = errortemp;
+                return RedirectToAction("Error");
+            }
             if (ModelState.IsValid)
             {
                 MyAttribute atr = new MyAttribute();
@@ -132,7 +142,7 @@ namespace BooksCatalogue.Controllers
             {
                 Error error = new Error();
                 error.Messag = "do not enter an attribute value";
-                return Error(error);
+             //   return Error(error);
             }
               
                 return RedirectToAction("AttributeAddTextValue");
@@ -185,7 +195,7 @@ namespace BooksCatalogue.Controllers
             {
                 Error error = new Error();
                 error.Messag = "Bad request";
-                return Error(error);
+               // return Error(error);
             }
             MyAttribute attribute = Meneger.Meneger.Find(id);
 
@@ -269,18 +279,18 @@ namespace BooksCatalogue.Controllers
                 }
                 else
                 {
-                    Error error = new Error();
-                    error.Messag = "do not enter an attribute value";
-                    return Error(error);
+                    Error errortemp = new Error();
+                    errortemp.Messag = "do not enter an attribute value";
+                    error = errortemp; 
+                    return RedirectToAction("Error");
                 }
             }
-            { }
+            
             return RedirectToAction("AttributeAddTextValue");
 
         }
-        private ActionResult Error(Error error)
-        {
-            
+        public ActionResult Error()
+        {   
             return View(error);
         }
         protected override void Dispose(bool disposing)
