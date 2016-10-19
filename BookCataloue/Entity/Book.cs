@@ -21,14 +21,12 @@ namespace Entity
             this.Books_of_Attributes = new HashSet<Books_of_Attributes>();
             this.UserBooks = new HashSet<UserBook>();
             this.Atributes = new List<Attribute>();
-            this.SelectAttributeList = new List<SelectListItem>();
-            this.SelectAttributeValueList= new List<SelectListItem>();
             this.AttributeValues = new List<AttributValue>();
+            this.SelectAttributeList = new List<SelectListItem>();
+            this.SelectAttributeValueList = new List<SelectListItem>();
         }
-        
+    
         public int ID { get; set; }
-        public int AttributeID { get; set; }
-
         public string BookName { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string Description { get; set; }
@@ -44,11 +42,10 @@ namespace Entity
         public virtual ICollection<Books_of_Attributes> Books_of_Attributes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserBook> UserBooks { get; set; }
-        public List<Entity.Attribute> Atributes { get; set; }
-        public List<SelectListItem> SelectAttributeList { get; set; }
-        public List<SelectListItem> SelectAttributeValueList { get; set; }
-
-        public List<Entity.AttributValue> AttributeValues { get; set; }
+        public virtual List<Entity.Attribute> Atributes { get; set; }
+        public virtual List<Entity.AttributValue> AttributeValues { get; set; }
+        public virtual List<SelectListItem> SelectAttributeList { get; set; }
+        public virtual List<SelectListItem> SelectAttributeValueList { get; set; }
 
     }
 }

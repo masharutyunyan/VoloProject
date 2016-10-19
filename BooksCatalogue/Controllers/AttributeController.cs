@@ -32,8 +32,17 @@ namespace BooksCatalogue.Controllers
 
         [HttpPost]
          [ValidateAntiForgeryToken]
-        public  ActionResult Create(string name, int TypeID, int maxCharackterCount, int mincharkcterCount)
+        public  ActionResult Create(string name, int TypeID, int? maxCharackterCount, int? mincharkcterCount)
         {
+            if(name == null || maxCharackterCount == null || mincharkcterCount == null)
+            {
+                Error errortemp = new Error();
+                errortemp.Name = "emptyFild";
+                errortemp.Messag = "inpute error or Type error. do not fill in all fields? Or the wrong types of fields filled in/MaxCharackterCount and MincharkcterCount must be int type /";
+                error = errortemp;
+                return RedirectToAction("Error");
+            }
+          
             if (maxCharackterCount < mincharkcterCount)
             {
                 Error errortemp = new Error();
@@ -216,7 +225,7 @@ namespace BooksCatalogue.Controllers
             return RedirectToAction("Index");
         }
 
-        //post
+       
         public ActionResult AttributeValue()//cucadrum e text tipi atributneri arjeqner@
         {
             List<AttributeXMLTextValueModel> atrValueList = new List<AttributeXMLTextValueModel>();
@@ -259,6 +268,14 @@ namespace BooksCatalogue.Controllers
          [ValidateAntiForgeryToken]
         public  ActionResult AddAttributeValue(string value)
         {
+            if(Meneger.Meneger.ValidationAttributeValue(value, attribute.ID) == false)
+            {
+                Error errortemp = new Error();
+                errortemp.Name = "AttributeValueValidation";
+                errortemp.Messag = "error input: Attribute value of the number of symbols in error";
+                error = errortemp;
+                return RedirectToAction("Error");
+            }
             if (value != null)
             {
                 AttributeXMLTextValueModel atrValue = new AttributeXMLTextValueModel();// texapoxel helper

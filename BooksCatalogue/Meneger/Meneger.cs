@@ -256,7 +256,23 @@ namespace BooksCatalogue.Meneger
 
             return book;
             }
-        
+     
+       public static bool ValidationAttributeValue(string attrValue, int? id)
+        {
+
+
+           Entity.Attribute attr = new Entity.Attribute();
+            using (BooksCatalogueEntities1 context = new BooksCatalogueEntities1())
+            {
+                attr = context.Attributes.Find(id);
+            }
+                AttributeXMLTextModel attrNameTemp = Helper.Helper.XmlTextDeSerialization(attr.AttributName);
+            if(attrNameTemp.MaxCharacterCount.ToString().Length > attrValue.Length && attrNameTemp.MinCharacterCount.ToString().Length < attrValue.Length)
+            {
+                return true;
+            }
+                return false;
+        }
     }
 } 
     

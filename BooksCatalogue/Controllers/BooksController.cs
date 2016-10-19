@@ -19,7 +19,6 @@ namespace BooksCatalogue.Controllers
         private static string FilePath = "~/Picture/";
         private static IQueryable<Book> tempSortBooks;
         private static string NameAction;
-        private static Book bookTemp;
         private static int?  bookID;
         static BooksOfAttributesViewModel bookAttr;
 
@@ -276,7 +275,7 @@ namespace BooksCatalogue.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            bookID = id;                   // grqi avelacan ev heracman hamar
+            bookID = id;                   // grqin avelacan ev heracman hamar
             return RedirectToAction("AppendAttribute");
         }
 
