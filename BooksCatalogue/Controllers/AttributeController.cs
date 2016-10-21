@@ -53,18 +53,7 @@ namespace BooksCatalogue.Controllers
             }
             if (ModelState.IsValid)
             {
-                MyAttribute atr = new MyAttribute();
-                AttributeXMLTextModel attributeTextXmlName = new AttributeXMLTextModel();
-                attributeTextXmlName.MaxCharacterCount = maxCharackterCount;
-                attributeTextXmlName.MinCharacterCount = mincharkcterCount;
-                attributeTextXmlName.Name = name;
-                System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(attributeTextXmlName.GetType());
-                StringWriter stringWriter = new StringWriter();
-                atrXml.Serialize(stringWriter, attributeTextXmlName);
-                atr.AttributName = stringWriter.ToString();
-                atr.AttributeTextXmlName = attributeTextXmlName;
-                atr.TypeID = TypeID;
-                Meneger.Meneger.SaveDB(atr);
+                Meneger.Meneger.CreateAttribute(name, TypeID, maxCharackterCount, mincharkcterCount);
                 return RedirectToAction("Index");
             }
             ViewBag.TypeID = new SelectList(context.AttributesTypes, "ID", "AttributeType", attribute.TypeID);
@@ -93,18 +82,7 @@ namespace BooksCatalogue.Controllers
         {
             if (ModelState.IsValid)
             {
-                MyAttribute atr = new MyAttribute();
-                AttributeXMLTextModel attributeTextXmlName = new AttributeXMLTextModel();
-                attributeTextXmlName.MaxCharacterCount = MaxCharacterCount;
-                attributeTextXmlName.MinCharacterCount = MinCharacterCount;
-                attributeTextXmlName.Name = Name;
-                System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(attributeTextXmlName.GetType());
-                StringWriter stringWriter = new StringWriter();
-                atrXml.Serialize(stringWriter, attributeTextXmlName);
-                atr.AttributName = stringWriter.ToString();
-                atr.AttributeTextXmlName = attributeTextXmlName;
-                atr.TypeID = attribute.TypeID;
-                Meneger.Meneger.SaveEdit(atr);
+                Meneger.Meneger.EditAttribute(attribute, Name, TypeID, MaxCharacterCount, MinCharacterCount);
                 return RedirectToAction("Index");
             }
             ViewBag.TypeID = new SelectList(context.AttributesTypes, "ID", "AttributeType", attribute.TypeID);
@@ -128,24 +106,11 @@ namespace BooksCatalogue.Controllers
         [HttpPost]//post popoxum e atributi arjeq@
         public ActionResult EditAttributeValue(string value, int id)
         {
-            if (value != null)
+            if (value != null && ModelState.IsValid)
             {
-                AttributValue attributeValue = new AttributValue();
-                attributeValue = context.AttributValues.Find(id);
-                AttributeXMLTextValueModel atrValue = new AttributeXMLTextValueModel();// texapoxel helper
-                atrValue = Helper.Helper.XmlTextValueDeSerialization(attributeValue.AttributValue1);
-                atrValue.Value = value;
-                System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(atrValue.GetType());
-                StringWriter stringWriter = new StringWriter();
-                atrXml.Serialize(stringWriter, atrValue);
-                attributeValue.AttributValue1 = stringWriter.ToString();
                 MyAttribute attrTemp = Meneger.Meneger.Find(attribute.ID);
                 attribute = attrTemp;
-
-                if (ModelState.IsValid)
-                {
-                    context.SaveChanges();
-                }
+                Meneger.Meneger.EditAttributeValue(value, id);
             }
             else
             {
@@ -276,32 +241,20 @@ namespace BooksCatalogue.Controllers
                 error = errortemp;
                 return RedirectToAction("Error");
             }
-            if (value != null)
-            {
-                AttributeXMLTextValueModel atrValue = new AttributeXMLTextValueModel();// texapoxel helper
-                atrValue.Value = value;
-                
-                System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(atrValue.GetType());
-                StringWriter stringWriter = new StringWriter();
-                atrXml.Serialize(stringWriter, atrValue);
-               AttributValue  dbAtrValue = new AttributValue();
-                dbAtrValue.AttributID = attribute.ID;
-                dbAtrValue.AttributValue1 = stringWriter.ToString();
+            if (value != null && ModelState.IsValid)
+            { 
                 MyAttribute attrTemp = Meneger.Meneger.Find(attribute.ID);
                 attribute = attrTemp;
-                if (ModelState.IsValid)
-                {
-                    context.AttributValues.Add(dbAtrValue);
-                    context.SaveChanges();
+                Meneger.Meneger.AddAttributeValue( value, attribute.ID);// 
+
                 }
-                else
+                if(value != null)
                 {
                     Error errortemp = new Error();
                     errortemp.Messag = "do not enter an attribute value";
                     error = errortemp; 
                     return RedirectToAction("Error");
                 }
-            }
             
             return RedirectToAction("AttributeAddTextValue");
 

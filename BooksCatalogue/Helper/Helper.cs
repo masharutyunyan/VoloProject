@@ -42,21 +42,35 @@ namespace BooksCatalogue.Helper
             return XmlValue;
         }
 
-        public static AttributeXMLTextModel XmlTextDeSerialization(string str)//bazayum grvac xml formatov atributi anun@ vercum e  hamapatsaxan obyekti
+        public static AttributeXMLTextModel XmlTextDeSerialization(string str)//bazayum grvac xml formatov atributi anun@ veracum e  hamapatsaxan obyekti
         {
             AttributeXMLTextModel Xmltext = new AttributeXMLTextModel();
-            int indexfirst = str.IndexOf("<Name>") + 6;
-            int indexlast = str.IndexOf("</Name>") - indexfirst;
-            string temp = str.Substring(indexfirst, indexlast);
-            Xmltext.Name = temp;
-            indexfirst = str.IndexOf("<MaxCharacterCount>") + 19;
-            indexlast = str.IndexOf("</MaxCharacterCount>") - indexfirst;
-            temp = str.Substring(indexfirst, indexlast);
-            Xmltext.MaxCharacterCount = Int32.Parse(temp);
-            indexfirst = str.IndexOf("<MinCharacterCount>") + 19;
-            indexlast = str.IndexOf("</MinCharacterCount>") - indexfirst;
-            temp = str.Substring(indexfirst, indexlast);
-            Xmltext.MinCharacterCount = Int32.Parse(temp);
+           
+                int indexfirst = str.IndexOf("<Name>") + 6;
+                int indexlast = str.IndexOf("</Name>") - indexfirst;
+                 string temp;
+                if (indexlast > 0)
+                {
+                   temp = str.Substring(indexfirst, indexlast);
+                    Xmltext.Name = temp;
+                }
+                indexfirst = str.IndexOf("<MaxCharacterCount>") + 19;
+                indexlast = str.IndexOf("</MaxCharacterCount>") - indexfirst;
+            if (indexlast > 0)
+            {
+                temp = str.Substring(indexfirst, indexlast);
+
+                Xmltext.MaxCharacterCount = Int32.Parse(temp);
+            }
+            if (indexlast > 0)
+            {
+                indexfirst = str.IndexOf("<MinCharacterCount>") + 19;
+                indexlast = str.IndexOf("</MinCharacterCount>") - indexfirst;
+                temp = str.Substring(indexfirst, indexlast);
+                Xmltext.MinCharacterCount = Int32.Parse(temp);
+            }
+          
+            
             return Xmltext;
         }
 

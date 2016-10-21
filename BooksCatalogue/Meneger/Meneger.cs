@@ -7,6 +7,7 @@ using BooksCatalogue.Models;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.IO;
 
 namespace BooksCatalogue.Meneger
 {
@@ -272,6 +273,70 @@ namespace BooksCatalogue.Meneger
                 return true;
             }
                 return false;
+        }
+        public static void AddAttributeValue(string value, int id)
+        {
+            AttributeXMLTextValueModel atrValue = new AttributeXMLTextValueModel();
+            atrValue.Value = value;
+
+            System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(atrValue.GetType());
+            StringWriter stringWriter = new StringWriter();
+            atrXml.Serialize(stringWriter, atrValue);
+            AttributValue dbAtrValue = new AttributValue();
+            dbAtrValue.AttributID = id;
+            using (BooksCatalogueEntities1 context = new BooksCatalogueEntities1())
+            {
+                context.AttributValues.Add(dbAtrValue);
+                context.SaveChanges();
+            }
+      
+            }
+        public static void EditAttribute(MyAttribute attribute,string Name, int TypeID, int? MaxCharacterCount, int? MinCharacterCount)
+        {
+            MyAttribute atr = new MyAttribute();
+            AttributeXMLTextModel attributeTextXmlName = new AttributeXMLTextModel();
+            attributeTextXmlName.MaxCharacterCount = MaxCharacterCount;
+            attributeTextXmlName.MinCharacterCount = MinCharacterCount;
+            attributeTextXmlName.Name = Name;
+            System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(attributeTextXmlName.GetType());
+            StringWriter stringWriter = new StringWriter();
+            atrXml.Serialize(stringWriter, attributeTextXmlName);
+            atr.AttributName = stringWriter.ToString();
+            atr.AttributeTextXmlName = attributeTextXmlName;
+            atr.TypeID = attribute.TypeID;
+            atr.ID = attribute.ID;
+            SaveEdit(atr);
+        }
+        public static void CreateAttribute(string name, int TypeID, int? maxCharackterCount, int? mincharkcterCount)
+        {
+            MyAttribute atr = new MyAttribute();
+            AttributeXMLTextModel attributeTextXmlName = new AttributeXMLTextModel();
+            attributeTextXmlName.MaxCharacterCount = maxCharackterCount;
+            attributeTextXmlName.MinCharacterCount = mincharkcterCount;
+            attributeTextXmlName.Name = name;
+            System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(attributeTextXmlName.GetType());
+            StringWriter stringWriter = new StringWriter();
+            atrXml.Serialize(stringWriter, attributeTextXmlName);
+            atr.AttributName = stringWriter.ToString();
+            atr.AttributeTextXmlName = attributeTextXmlName;
+            atr.TypeID = TypeID;
+            SaveDB(atr);
+        }
+        public static void EditAttributeValue(string value, int id)
+        {
+            AttributValue attributeValue = new AttributValue();
+            using (BooksCatalogueEntities1 context = new BooksCatalogueEntities1())
+            {
+                attributeValue = context.AttributValues.Find(id);
+                AttributeXMLTextValueModel atrValue = new AttributeXMLTextValueModel();// texapoxel helper
+                atrValue = Helper.Helper.XmlTextValueDeSerialization(attributeValue.AttributValue1);
+                atrValue.Value = value;
+                System.Xml.Serialization.XmlSerializer atrXml = new System.Xml.Serialization.XmlSerializer(atrValue.GetType());
+                StringWriter stringWriter = new StringWriter();
+                atrXml.Serialize(stringWriter, atrValue);
+                attributeValue.AttributValue1 = stringWriter.ToString();
+                context.SaveChanges();
+            }
         }
     }
 } 
