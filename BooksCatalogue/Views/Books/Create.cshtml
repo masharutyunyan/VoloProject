@@ -64,10 +64,9 @@
                 @Html.ValidationMessageFor(model => model.AuthorID, "", new { @class = "text-danger" })
                </div>
             </div>
-            <div class="form-group" id="Publishd" style="display:inline-block;margin-top:5px">
+            <div class="form-group" id="Publishd">
            @Html.Label("Publishd", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10" style="margin-left:100px;">
-
+                <div class="col-md-10">
                  @Html.EditorFor(m => m.PublishDate, new { htmlAttributes = new { @class = "datepicker" } })
                     @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
                 </div>
@@ -76,8 +75,8 @@
         <div class="form-group">
             @Html.Label("Picture", htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
-            <div class="col-md-10">
-                <input type="file" name="PictureName" id="ID" accept=".jpg,.png,.jpeg,gif" />
+            <div class="col-md-10" id="image">
+                <input type="file" name="PictureName" accept=".jpg,.png,.jpeg,gif" />
             </div>
 
         <div class="form-group">

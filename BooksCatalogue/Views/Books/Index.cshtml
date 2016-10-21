@@ -14,9 +14,7 @@
     </a>
     @*@if (User.Identity.IsAuthenticated)
     {*@
-    <a href="@Url.Action("Create", "Books")" id="IndexCreate" class="btn btn-default btn-sm ">
-        <span class="glyphicon glyphicon-plus-sign"></span> Book
-    </a>
+    <a data-toggle="modal" id="IndexCreate" data-target="#myModal" title="Create book" class="btn pd10 tip"> <span class="glyphicon glyphicon-plus-sign"></span> Book</a>
 </div>
 <div class="container">
     <!-- Trigger the modal with a button -->

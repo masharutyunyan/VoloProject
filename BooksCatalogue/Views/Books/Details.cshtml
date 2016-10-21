@@ -6,7 +6,6 @@
 <head>
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
-@*<div id="gridContent" style="width:600px; height:400px; background-color:#FFFCB5; margin-left:37px; float:left ;margin-top:10px;">*@
 
     <div class="row">
         <div class="col-lg-3">
@@ -14,7 +13,7 @@
           
                 <img class="btnImg" style="margin-top: 24px ! important;margin:15px;" src="~/Picture/@Model.PictureName" width="100" height="150" />
          
-            <div class="price" style="background-color:chartreuse; width:80px;font-size:20px;margin-left:23px;">
+            <div c="price" style="background-color:chartreuse; width:80px;font-size:20px;margin-left:23px;">
                 @{
                     var pr = Convert.ToDecimal(@Model.Price);
                     var pr1 = pr.ToString("C2");
@@ -57,16 +56,13 @@
     <div>
         <h4 class="countryh4">Country:</h4>
         @Model.Country.CountryName
-        <h4 class="publishdh4" style="margin-left: 376px;  margin-top: -28px;">Published:</h4>
+        <h4 id="publishdh4">Published:</h4>
         @{
             string temp = Model.PublishDate.ToString().Substring(0, 10);
         }
-        <p style="margin-left: 466px; margin-top: -29px;">@temp</p>  
+        <p id="publishtedP">@temp</p>  
     </div>
-    <div class="row" style="float:right;margin-right:15px;">
-       
-
-    </div>
+   
 
 
 

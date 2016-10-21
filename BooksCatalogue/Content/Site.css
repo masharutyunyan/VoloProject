@@ -137,13 +137,13 @@ btnPanelBooksIndex{
     margin-top:5px
 }
 
-/*Boo\Details*/
+/*Book\Details*/
 
-.price {
-    background-color: chartreuse;
-    width: 80px;
-    font-size: 20px;
-    margin-left: 23px;
+#price {
+    background-color:chartreuse;
+     width:80px;
+     font-size:20px;
+     margin-left:23px;
 }   
      .authorh4
      {
@@ -158,8 +158,15 @@ btnPanelBooksIndex{
      .countryh4{
          display:inline-block;
          margin-left:151px;
-     }   
-   
+     }  
+     #publishdh4{
+         margin-left: 376px; 
+          margin-top: -28px;
+     } 
+   #publishtedP{
+       margin-left: 466px; 
+       margin-top: -29px;
+   }
     /*book index*/
      .mynavbar
      {
@@ -271,7 +278,9 @@ Attribute/AttributeAddTextValue -->*/
 
 #jpg
 {
-    height:33px;
+   margin-right:1px;
+   float:right;
+   margin-top:-21px
 }
 /* Layout*/
 
@@ -293,4 +302,24 @@ Attribute/AttributeAddTextValue -->*/
     padding-bottom: 25px;
     margin-left: 186px;
     margin-top: 8px;
+}
+/* book/create */
+.Publishd{
+    display:inline-block;
+    margin-top:5px;
+}
+#image{
+margin-left: 85px;
+ margin-top: -33px;
+}
+#p{
+   font-size: 20px;
+    margin-top: 60px;
+}
+#deletAppendAttributeBtnDel{
+    padding-bottom: 10px;
+}
+/*Attribute/Error*/
+.error {
+    margin-top:60px;
 }
