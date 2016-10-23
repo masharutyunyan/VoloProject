@@ -78,7 +78,7 @@ namespace BooksCatalogue.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,AttributName,TypeID")] MyAttribute attribute, string Name, int TypeID, int? MaxCharacterCount, int? MinCharacterCount)
+        public ActionResult Edit( MyAttribute attribute, string Name, int TypeID, int? MaxCharacterCount, int? MinCharacterCount)
         {
             if (ModelState.IsValid)
             {
@@ -140,7 +140,7 @@ namespace BooksCatalogue.Controllers
         // POST: Delete Attribute Value
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteAttributeValue(int id)
+        public ActionResult DeleteAttributeValue(int id)// jnjeluc jnjel book attribut tabli hamapatasxan tox@ 
         {
             AttributValue attribute = context.AttributValues.Find(id);
             context.AttributValues.Remove(attribute);
@@ -190,17 +190,21 @@ namespace BooksCatalogue.Controllers
             return RedirectToAction("Index");
         }
 
-       
+
         public ActionResult AttributeValue()//cucadrum e text tipi atributneri arjeqner@
         {
             List<AttributeXMLTextValueModel> atrValueList = new List<AttributeXMLTextValueModel>();
             foreach (var item in context.AttributValues)
             {
-            AttributeXMLTextValueModel atrValue = new AttributeXMLTextValueModel();    
-            atrValue =  Helper.Helper.XmlTextValueDeSerialization(item.AttributValue1);
-            atrValue.AttributeValueID = item.ID;
-            atrValueList.Add(atrValue);          
+                if (item!= null)
+                {
+                    AttributeXMLTextValueModel atrValue = new AttributeXMLTextValueModel();
+                    atrValue = Helper.Helper.XmlTextValueDeSerialization(item.AttributValue1);
+                    atrValue.AttributeValueID = item.ID;
+                    atrValueList.Add(atrValue);
+                }
             }
+            
             
             return PartialView("_AttributeAddTextValue", atrValueList);//cucadrum e text tipi antributneri arjeqner@
         }
@@ -248,7 +252,7 @@ namespace BooksCatalogue.Controllers
                 Meneger.Meneger.AddAttributeValue( value, attribute.ID);// 
 
                 }
-                if(value != null)
+                if(value == null)
                 {
                     Error errortemp = new Error();
                     errortemp.Messag = "do not enter an attribute value";

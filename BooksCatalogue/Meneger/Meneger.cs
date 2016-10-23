@@ -85,12 +85,44 @@ namespace BooksCatalogue.Meneger
 
             return attribute;
         }
-        public static void Remove(MyAttribute attribute)
+        private static Books_of_Attributes FindBooksOfAttribute(int id)
         {
+            Books_of_Attributes temp = new Books_of_Attributes();
             using (BooksCatalogueEntities1 context = new BooksCatalogueEntities1())
             {
-                var atrDb = context.Attributes.Find(attribute.ID);
-                context.Attributes.Remove(atrDb);
+                foreach (var itembooksOfAttribute in context.Books_of_Attributes)
+                {
+                    if (itembooksOfAttribute.AttributesID == id)
+
+                    {
+                        temp = itembooksOfAttribute;
+                        break;
+                    }
+                }
+            }
+            return temp;
+        }
+        public static void Remove(MyAttribute attribute)
+        {
+
+            using (BooksCatalogueEntities1 context = new BooksCatalogueEntities1())
+            { 
+                foreach (var item in context.AttributValues)
+                {
+                    if(item.AttributID == attribute.ID)
+                    {
+                        Books_of_Attributes temp = FindBooksOfAttribute(item.ID);
+
+                        if (temp.ID!=0)
+                        {
+                            context.Books_of_Attributes.Remove(context.Books_of_Attributes.Find(temp.ID));
+                        }
+                        context.AttributValues.Remove(item);
+                    }
+
+                }
+                var attr = context.Attributes.Find(attribute.ID);
+                context.Attributes.Remove(attr);
                 context.SaveChanges();
 
             }
@@ -268,7 +300,7 @@ namespace BooksCatalogue.Meneger
                 attr = context.Attributes.Find(id);
             }
                 AttributeXMLTextModel attrNameTemp = Helper.Helper.XmlTextDeSerialization(attr.AttributName);
-            if(attrNameTemp.MaxCharacterCount.ToString().Length > attrValue.Length && attrNameTemp.MinCharacterCount.ToString().Length < attrValue.Length)
+            if(Convert.ToInt32( attrNameTemp.MaxCharacterCount) > attrValue.Length && Convert.ToInt32(attrNameTemp.MinCharacterCount)< attrValue.Length)
             {
                 return true;
             }
@@ -284,6 +316,7 @@ namespace BooksCatalogue.Meneger
             atrXml.Serialize(stringWriter, atrValue);
             AttributValue dbAtrValue = new AttributValue();
             dbAtrValue.AttributID = id;
+            dbAtrValue.AttributValue1 = stringWriter.ToString();
             using (BooksCatalogueEntities1 context = new BooksCatalogueEntities1())
             {
                 context.AttributValues.Add(dbAtrValue);
