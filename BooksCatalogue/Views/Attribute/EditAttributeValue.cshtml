@@ -3,7 +3,7 @@
     ViewBag.Title = "EditAttributeValue";
 }
 
-
+<head><link href="~/Content/Site.css" rel="stylesheet" /></head>
 
 @using (Html.BeginForm("EditAttributeValue", "Attribute", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -11,7 +11,6 @@
     
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
 
         <div class="form-group " style="margin-top">
             @Html.Label("Value:", htmlAttributes: new { @class = "control-label col-md-2", style = "margin-top:70px;" })
@@ -21,14 +20,14 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10"style="">
-                <input type="submit" value="Save" class="btn btn-default" style="margin-top:25px;" />
+            <div class="col-md-offset-2 col-md-10" id="editAttributeValue">
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
+<div id="AttrValueEditBackToList">
     @Html.ActionLink("Back to List", "AttributeAddTextValue")
 </div>
 

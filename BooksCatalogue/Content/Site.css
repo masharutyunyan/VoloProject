@@ -323,3 +323,42 @@ margin-left: 85px;
 .error {
     margin-top:60px;
 }
+/* Attribute edit*/
+#AttributeEdit{
+      margin-left: 187px;
+      padding-bottom: 6px;
+      margin-top: 5px;
+}
+#AttributeEditBackToList{
+    display: inline-block;
+    float: right;
+    margin-top: 13px;
+}
+/* Attribute value edit*/
+#editAttributeValue{
+    display: inline-block;
+    margin-top: 4px;
+    margin-left: 71px;
+    padding-bottom: 11px;
+}
+#AttrValueEditBackToList{
+  
+    display: inline-block;
+    float: right;
+    margin-top: 19px;
+}
+}
+/* Attribute value Delete*/
+#AttrValueDeletdelet
+{
+    padding-bottom: 15px;
+    display:inline-block
+}
+.AttrValueDeletBackToLit
+{
+    float: right;
+    margin-top: 17px;
+}
+#attrValueDeleteH3{
+  padding-top: 61px;
+}
