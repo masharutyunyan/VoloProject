@@ -58,7 +58,7 @@ namespace BooksCatalogue.Controllers
                 {
                     var searchBooks = Helper.Helper.Search(search, books);
                     searchBooks = PriceByCountryTelKod(searchBooks);
-                    searchBooks = searchBooks.OrderBy(k => k.BookName).Skip((page - 1) * 4).Take(4);
+                    searchBooks = searchBooks.OrderBy(k => k.ID).Skip((page - 1) * 4).Take(4);
                     ViewBag.Page = page;
                     ViewBag.Count = searchBooks.Count();
                     ViewBag.PageSize = 4;
@@ -73,7 +73,7 @@ namespace BooksCatalogue.Controllers
 
             {
                var sortBooks = PriceByCountryTelKod(books);
-                 sortBooks = Helper.Helper.Sort(sortby,sortBooks);
+                sortBooks = Helper.Helper.Sort(sortby,sortBooks);
                 tempSortBooks = sortBooks;
                 sortBooks = sortBooks.Skip((page - 1) * 4).Take(4);
                 ViewBag.Page = page;
@@ -83,7 +83,7 @@ namespace BooksCatalogue.Controllers
             }
            
             PriceByCountryTelKod(books);
-           books = books.OrderBy(k=>k.BookName).Skip((page - 1) * 4).Take(4);
+           books = books.OrderBy(k=>k.ID).Skip((page - 1) * 4).Take(4);
             ViewBag.Page = page;
             ViewBag.PageSize = 4;
             return View(await books.ToListAsync());
@@ -210,13 +210,12 @@ namespace BooksCatalogue.Controllers
             }
             return View(book);
         }
-      
-
         // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
+            Meneger.Meneger.DeleteBooksOfAttribute(id);
             Book book = await db.Books.FindAsync(id);
             if (book.PictureName != null)
             {

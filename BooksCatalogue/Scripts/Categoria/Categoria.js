@@ -4,10 +4,10 @@ $("#CreateBook").click(function (eve) {
     $("#modal-content").load("/Books/Create");
 }
 );
-$(".CreateBook").click(function (eve) {
-    $("#modal-content").load("/Books/Create");
-}
-);
+//$(".CreateBook").click(function (eve) {
+//    $("#modal-content").load("/Books/Create");
+//}
+//);
 $(".btnEditor").click(function (eve) {
 
     $("#modal-content").load("/Books/Edit/" + $(this).data("id"));

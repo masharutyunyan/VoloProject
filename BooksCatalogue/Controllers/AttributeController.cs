@@ -69,16 +69,21 @@ namespace BooksCatalogue.Controllers
 
             var attribute = Meneger.Meneger.Find(id);
             attribute.AttributeTextXmlName = Helper.Helper.XmlTextDeSerialization(attribute.AttributName);
+            ViewBag.MinCharackterCount = attribute.AttributeTextXmlName.MaxCharacterCount;
             if (attribute == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.Name = attribute.AttributeTextXmlName.Name;
+            ViewBag.MaxCharacterCount = attribute.AttributeTextXmlName.MaxCharacterCount;
+            ViewBag.MinCharacterCount = attribute.AttributeTextXmlName.MinCharacterCount;
+
             ViewBag.TypeID = new SelectList(context.AttributesTypes, "ID", "AttributeType", attribute.TypeID);
             return View(attribute);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( MyAttribute attribute, string Name, int TypeID, int? MaxCharacterCount, int? MinCharacterCount)
+        public ActionResult Edit(MyAttribute attribute, string Name, int TypeID, int? MaxCharacterCount, int? MinCharacterCount)
         {
             if (ModelState.IsValid)
             {
@@ -142,9 +147,7 @@ namespace BooksCatalogue.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteAttributeValue(int id)// jnjeluc jnjel book attribut tabli hamapatasxan tox@ 
         {
-            AttributValue attribute = context.AttributValues.Find(id);
-            context.AttributValues.Remove(attribute);
-            context.SaveChanges();
+            Meneger.Meneger.DeleteAttributeValue(id);
             return RedirectToAction("AttributeAddTextValue");
         }
         public ActionResult Details(int? id)

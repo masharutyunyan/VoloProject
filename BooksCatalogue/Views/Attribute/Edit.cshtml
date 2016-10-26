@@ -22,7 +22,7 @@
         <div class="form-group">
             @Html.Label("Name:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AttributeTextXmlName.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.Editor("Name",null, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AttributeTextXmlName.Name, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.Label("Max:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AttributeTextXmlName.MaxCharacterCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.Editor("MaxCharacterCount", null, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AttributeTextXmlName.MaxCharacterCount, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="form-group">
             @Html.Label("Min:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AttributeTextXmlName.MinCharacterCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.Editor("MinCharacterCount", null, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AttributeTextXmlName.MinCharacterCount, "", new { @class = "text-danger" })
             </div>
         </div>

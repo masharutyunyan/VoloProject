@@ -5,10 +5,10 @@
  <link href="~/Content/Grid.css" rel="stylesheet" />
  </head>
         @{
-            int current = ViewBag.Page;
-            int size = ViewBag.PageSize;
-            int total = ViewBag.Count;
             ViewBag.Title = "IndexGrid";
+            int page = ViewBag.Page;
+            int size = ViewBag.PageSize;
+            int count = ViewBag.Count;
             string serchTemp = ViewBag.searchBooks;
         }
 
@@ -153,8 +153,8 @@
                                             }
                 </div>
             </div>
-            @Html.PagePrev(current, size, total)
-            @Html.PageNext(current, size, total)
+            @Html.PagePrev(page, size, count)
+            @Html.PageNext(page, size, count)
         </div>
         @section scripts
     {

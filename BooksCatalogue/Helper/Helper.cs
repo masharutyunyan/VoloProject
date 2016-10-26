@@ -26,13 +26,12 @@ namespace BooksCatalogue.Helper
             if (sortby == "title")
                 sortBooks = sortBooks.OrderBy(x => x.BookName);
             if (sortby == "price")
-
                 sortBooks = sortBooks.OrderBy(x => x.Price);
             if (sortby == "author")
                 sortBooks = sortBooks.OrderBy(x => x.Author.FirstName);
             return sortBooks;
         }
-        public static AttributeXMLTextValueModel XmlTextValueDeSerialization(string str)////bazayum grvac xml formatov atributi arjeq@ vercum e  hamapatsaxan obyekti
+        public static AttributeXMLTextValueModel XmlTextValueDeSerialization(string str)//bazayum grvac xml formatov atributi arjeq@ vercum e  hamapatsaxan obyekti
         {
             int indexfirst = str.IndexOf("<Value>") + 7;
             int indexlast = str.IndexOf("</Value>") - indexfirst;

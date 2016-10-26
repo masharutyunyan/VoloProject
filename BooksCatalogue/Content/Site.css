@@ -122,11 +122,11 @@ btnPanelBooksIndex{
 } 
    
 #CreateBook {
-    height: 38px;
-    font-size: 18px;
-    color: black;
-    margin-bottom: -66px;
-    background-color: #D6BBA0;
+    font-size: 17px;
+     height:38px;
+     margin-bottom:-8px;
+     background-color: #D6BBA0;
+     margin-left:4px;
 }
 #sort{
     background-color: #D6BBA0;
@@ -153,14 +153,14 @@ btnPanelBooksIndex{
      .Pagerh4
      {
          display:inline-block;
-         margin-left:92px;
+         margin-left:123px;
      }   
      .countryh4{
          display:inline-block;
          margin-left:151px;
      }  
      #publishdh4{
-         margin-left: 376px; 
+         margin-left: 371px; 
           margin-top: -28px;
      } 
    #publishtedP{
@@ -194,14 +194,14 @@ Attribute/AttributeAddTextValue -->*/
      background-color: #D6BBA0;
      margin-left:4px"
 }
- <!-- Attribute/AttributeAddTextValue -->
+ /*<!-- Attribute/AttributeAddTextValue -->*/
 #attributevalueList{
     display: inline-block;
     float: right;
     margin-top: -354px;
     margin-right: 60px;
 }
-      Book/-IndexGrid->
+     /* Book/-IndexGrid->*/
 #IndexGridserch{
       margin-top:14px;
       background-color:#f5f5f5 !important;
@@ -265,6 +265,7 @@ Attribute/AttributeAddTextValue -->*/
      margin-left:4px
 
 }
+
 #mynavbar{
     background-color:#FFFCB5;
     margin-top:60px;

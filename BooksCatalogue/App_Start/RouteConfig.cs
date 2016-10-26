@@ -16,7 +16,7 @@ namespace BooksCatalogue
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Books", action = "IndexGrid", id = UrlParameter.Optional }
+                defaults: new { controller = "Books", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

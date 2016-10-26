@@ -9,39 +9,38 @@ namespace BooksCatalogue.Helper
 {
     public  static class Pageination
     {
-        public static MvcHtmlString PageNext(this HtmlHelper Html, int current, int size, int total)
+        public static MvcHtmlString PageNext(this HtmlHelper Html, int page, int size, int count)
         {
-            if (total - ((size * current) + 1) <= 0)
+            if (count - ((size * page) + 1) <= 0)
             {
                 return Html.ActionLink("Next", "IndexGrid",
-                new { page = current + 1},
+                new { page = page + 1},
                 new { @class = "btn btn-primary", disabled = "disabled" });
             }
             else
             {
                 return Html.ActionLink("Next", "IndexGrid",
-                new { page = current + 1},
+                new { page = page + 1},
                 new { @class = "btn btn-primary" });
             }
         }
 
-        public static MvcHtmlString PagePrev(this HtmlHelper Html, int current, int size, int total)
+        public static MvcHtmlString PagePrev(this HtmlHelper Html, int page, int size, int count)
         {
-            if (current < 2)
+            if (page < 2)
             {
                 return Html.ActionLink("Previous", "IndexGrid",
-                new { page = current - 1 },
+                new { page = page - 1 },
                 new { @class = "btn btn-primary", disabled = "disabled" });
             }
             else
             {
                 return Html.ActionLink("Previous", "IndexGrid",
-                new { page = current - 1},
-                new { @class = "btn btn-primary" });
+                new { page = page - 1},
+                new { @class = "btn btn-primary"});
             }
         }
 
-        // GET: Books/Details/5
        
     }
 }

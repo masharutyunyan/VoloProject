@@ -371,6 +371,37 @@ namespace BooksCatalogue.Meneger
                 context.SaveChanges();
             }
         }
+        public static void  DeleteAttributeValue( int id)
+        {
+            using (BooksCatalogueEntities1 context = new BooksCatalogueEntities1())
+            {
+                foreach (var item in context.Books_of_Attributes)
+                {
+                    if (item.AttributesID == id)
+                    {
+                        context.Books_of_Attributes.Remove(item);
+                    }
+                }
+                context.AttributValues.Remove( context.AttributValues.Find(id));
+                context.SaveChanges();
+            }
+
+        }
+        public static void DeleteBooksOfAttribute(int id)
+        {
+            using (BooksCatalogueEntities1 context = new BooksCatalogueEntities1())
+            {
+                foreach (var item in context.Books_of_Attributes)
+                {
+                    if (item.BooksID == id)
+                    {
+                        context.Books_of_Attributes.Remove(item);
+                    }
+                }
+                context.SaveChanges();
+            }
+        }
+
     }
 } 
     
